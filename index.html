@@ -1759,6 +1759,25 @@
       {title:"Presentation", src:"https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=70"},
     ];
     const gal = document.getElementById("gal");
+    gal.innerHTML = GALLERY.map((g,i)=>`
+  <div class="ph" data-i="${i}">
+    <img src="${g.src}" alt="${g.title}" loading="lazy">
+    <span>${g.title}</span>
+  </div>
+`).join("");
+
+gal.querySelectorAll(".ph").forEach(el=>{
+  el.addEventListener("click", ()=>{
+    const i = Number(el.getAttribute("data-i"));
+    const g = GALLERY[i];
+    openModal("Gallery • " + g.title, `
+      <div style="border-radius:18px; overflow:hidden">
+        <img src="${g.src}" style="width:100%">
+      </div>
+    `);
+  });
+});
+
   gal.innerHTML = GALLERY.map((g,i)=>`
   <div class="ph" data-i="${i}">
     <img
@@ -1770,18 +1789,6 @@
     <span>${g.title}</span>
   </div>
 `).join("");
-
-    gal.querySelectorAll(".ph").forEach(el=>{
-      el.addEventListener("click", ()=>{
-        const i = Number(el.getAttribute("data-i"));
-        const g = GALLERY[i];
-        openModal("Gallery • " + g.title, `
-          <div style="border-radius:18px; overflow:hidden; border:1px solid var(--line)">
-            <img src="${g.src}" alt="${g.title}" style="width:100%; height:auto;">
-          </div>
-        `);
-      });
-    });
 
     /********************
      * 7) BLOG
