@@ -686,6 +686,74 @@
 
           <!-- ✅ NEW -->
           <a href="#blog" data-spy>Blog</a>
+          <!-- ✅ NEW: DIARY -->
+<section id="diary">
+  <div class="titleRow">
+    <h2>Diary (Write • Edit • Delete)</h2>
+    <span class="muted2" style="font-weight:800">Saved on this device (localStorage)</span>
+  </div>
+
+  <div class="grid split2">
+    <!-- Editor -->
+    <div class="card pad">
+      <h3 style="margin:0 0 10px; font-size:15px">✍️ Write / Edit</h3>
+
+      <div class="formGrid">
+        <input class="input" id="dTitle" placeholder="Tiêu đề..." />
+        <textarea class="input textarea" id="dContent" placeholder="Nội dung nhật ký..."></textarea>
+
+        <div class="controls">
+          <select class="select" id="dVisibility" style="min-width:180px">
+            <option value="private">Private (chỉ mình bạn thấy)</option>
+            <option value="public">Public (hiển thị trên web)</option>
+          </select>
+
+          <button class="btn btnPrimary" id="btnDiarySave" type="button" style="min-width:200px">
+            <span class="ico">💾</span><span>Lưu bài</span>
+          </button>
+
+          <button class="btn" id="btnDiaryCancel" type="button" style="min-width:200px; display:none">
+            <span class="ico">↩️</span><span>Hủy sửa</span>
+          </button>
+        </div>
+
+        <div class="muted2" style="font-weight:800; font-size:12px; line-height:1.7">
+          ✅ Bài được lưu vĩnh viễn trên máy bạn. Nếu đổi máy/trình duyệt sẽ không còn (trừ khi export).
+        </div>
+      </div>
+    </div>
+
+    <!-- List -->
+    <div class="card pad">
+      <h3 style="margin:0 0 10px; font-size:15px">📚 Your entries</h3>
+
+      <div class="controls">
+        <input class="input" id="dSearch" placeholder="Tìm trong nhật ký..." />
+        <select class="select" id="dFilter" style="min-width:180px">
+          <option value="all">All</option>
+          <option value="public">Public</option>
+          <option value="private">Private</option>
+        </select>
+      </div>
+
+      <div style="height:10px"></div>
+
+      <div class="list" id="diaryList"></div>
+
+      <div class="miniBtns" style="margin-top:12px">
+        <button class="miniBtn" id="btnDiaryExport" type="button">⬇️ Export JSON</button>
+        <button class="miniBtn" id="btnDiaryImport" type="button">⬆️ Import JSON</button>
+        <input type="file" id="diaryFile" accept="application/json" style="display:none" />
+        <button class="miniBtn" id="btnDiaryClearAll" type="button">🗑️ Clear all</button>
+      </div>
+
+      <div class="muted2" style="margin-top:10px; font-weight:800; font-size:12px; line-height:1.7">
+        * Public sẽ hiện trên web; Private chỉ lưu nội bộ máy bạn.
+      </div>
+    </div>
+  </div>
+</section>
+
           <a href="#media" data-spy>Media</a>
           <a href="#diary" data-spy>Diary</a>
           <a href="#qr" data-spy>QR</a>
@@ -2077,6 +2145,256 @@ setActiveTrack(defaultIdx >= 0 ? defaultIdx : 0);;
       if(!currentItem) return;
       window.open(`https://www.youtube.com/watch?v=${currentItem.videoId}`, "_blank", "noopener");
     });
+    /********************
+ * ✅ DIARY (CRUD) with localStorage
+ ********************/
+const DIARY_KEY = "trung_diary_v1";
+let diary = [];
+let editingId = null;
+
+function uid(){
+  return Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+}
+function nowISO(){
+  const d = new Date();
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth()+1).padStart(2,"0");
+  const dd = String(d.getDate()).padStart(2,"0");
+  const hh = String(d.getHours()).padStart(2,"0");
+  const mi = String(d.getMinutes()).padStart(2,"0");
+  return `${yyyy}-${mm}-${dd} ${hh}:${mi}`;
+}
+function loadDiary(){
+  try{
+    const raw = localStorage.getItem(DIARY_KEY);
+    diary = raw ? JSON.parse(raw) : [];
+    if(!Array.isArray(diary)) diary = [];
+  }catch(e){
+    diary = [];
+  }
+}
+function saveDiary(){
+  localStorage.setItem(DIARY_KEY, JSON.stringify(diary));
+}
+
+const dTitle = document.getElementById("dTitle");
+const dContent = document.getElementById("dContent");
+const dVisibility = document.getElementById("dVisibility");
+const btnDiarySave = document.getElementById("btnDiarySave");
+const btnDiaryCancel = document.getElementById("btnDiaryCancel");
+const diaryList = document.getElementById("diaryList");
+const dSearch = document.getElementById("dSearch");
+const dFilter = document.getElementById("dFilter");
+
+function resetEditor(){
+  editingId = null;
+  dTitle.value = "";
+  dContent.value = "";
+  dVisibility.value = "private";
+  btnDiaryCancel.style.display = "none";
+  btnDiarySave.querySelector("span:last-child").textContent = "Lưu bài";
+}
+
+function renderDiary(){
+  const q = (dSearch.value || "").trim().toLowerCase();
+  const f = dFilter.value;
+
+  const filtered = diary
+    .slice()
+    .sort((a,b)=> (b.updatedAt || b.createdAt).localeCompare(a.updatedAt || a.createdAt))
+    .filter(x=>{
+      const okFilter = (f === "all") ? true : x.visibility === f;
+      const text = `${x.title} ${x.content}`.toLowerCase();
+      const okQ = !q ? true : text.includes(q);
+      return okFilter && okQ;
+    });
+
+  if(filtered.length === 0){
+    diaryList.innerHTML = `<div class="item"><p class="muted" style="margin:0">Chưa có bài nhật ký nào.</p></div>`;
+    return;
+  }
+
+  diaryList.innerHTML = filtered.map(x=>`
+    <div class="item" data-id="${x.id}">
+      <div style="display:flex; justify-content:space-between; gap:10px; align-items:flex-start">
+        <div>
+          <h3 style="margin:0 0 6px">${escapeHtml(x.title || "(No title)")}</h3>
+          <p class="muted" style="margin:0; white-space:pre-line">${escapeHtml(shorten(x.content || "", 320))}</p>
+          <div class="tagRow" style="margin-top:10px">
+            <span class="pill">${x.visibility === "public" ? "🌍 Public" : "🔒 Private"}</span>
+            <span class="pill">🕒 ${escapeHtml(x.updatedAt || x.createdAt)}</span>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px; min-width:140px">
+          <button class="miniBtn" data-edit="${x.id}" type="button">✏️ Edit</button>
+          <button class="miniBtn" data-del="${x.id}" type="button">🗑️ Delete</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+
+  diaryList.querySelectorAll("[data-edit]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const id = btn.getAttribute("data-edit");
+      const item = diary.find(x=>x.id===id);
+      if(!item) return;
+      editingId = id;
+      dTitle.value = item.title || "";
+      dContent.value = item.content || "";
+      dVisibility.value = item.visibility || "private";
+      btnDiaryCancel.style.display = "inline-flex";
+      btnDiarySave.querySelector("span:last-child").textContent = "Cập nhật";
+      toast("Editing ✏️");
+      location.hash = "#diary";
+    });
+  });
+
+  diaryList.querySelectorAll("[data-del]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const id = btn.getAttribute("data-del");
+      const item = diary.find(x=>x.id===id);
+      if(!item) return;
+      const ok = confirm(`Xóa bài: "${item.title || "(No title)"}" ?`);
+      if(!ok) return;
+      diary = diary.filter(x=>x.id!==id);
+      saveDiary();
+      renderDiary();
+      toast("Deleted ✅");
+      if(editingId === id) resetEditor();
+    });
+  });
+}
+
+function shorten(s, n){
+  if(!s) return "";
+  return s.length > n ? s.slice(0, n) + "..." : s;
+}
+function escapeHtml(str){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+btnDiarySave.addEventListener("click", ()=>{
+  const title = (dTitle.value || "").trim();
+  const content = (dContent.value || "").trim();
+  const visibility = dVisibility.value;
+
+  if(!title && !content){
+    toast("Nhập tiêu đề hoặc nội dung nhé");
+    return;
+  }
+
+  if(editingId){
+    const item = diary.find(x=>x.id===editingId);
+    if(!item) { resetEditor(); return; }
+    item.title = title;
+    item.content = content;
+    item.visibility = visibility;
+    item.updatedAt = nowISO();
+    saveDiary();
+    renderDiary();
+    toast("Updated ✅");
+    resetEditor();
+  }else{
+    diary.push({
+      id: uid(),
+      title,
+      content,
+      visibility,
+      createdAt: nowISO(),
+      updatedAt: null,
+    });
+    saveDiary();
+    renderDiary();
+    toast("Saved ✅");
+    resetEditor();
+  }
+});
+
+btnDiaryCancel.addEventListener("click", ()=>{
+  resetEditor();
+  toast("Canceled");
+});
+
+dSearch.addEventListener("input", renderDiary);
+dFilter.addEventListener("change", renderDiary);
+
+// Export / Import / Clear all
+document.getElementById("btnDiaryExport").addEventListener("click", ()=>{
+  const data = JSON.stringify(diary, null, 2);
+  const blob = new Blob([data], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "diary_backup.json";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  toast("Exported ✅");
+});
+
+document.getElementById("btnDiaryImport").addEventListener("click", ()=>{
+  document.getElementById("diaryFile").click();
+});
+
+document.getElementById("diaryFile").addEventListener("change", (e)=>{
+  const file = e.target.files && e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    try{
+      const data = JSON.parse(reader.result);
+      if(!Array.isArray(data)) throw new Error("Invalid file");
+      // merge safely (keep unique ids)
+      const map = new Map(diary.map(x=>[x.id,x]));
+      data.forEach(x=>{
+        if(x && x.id){
+          map.set(x.id, x);
+        }else{
+          map.set(uid(), {
+            id: uid(),
+            title: x.title || "",
+            content: x.content || "",
+            visibility: x.visibility || "private",
+            createdAt: x.createdAt || nowISO(),
+            updatedAt: x.updatedAt || null,
+          });
+        }
+      });
+      diary = Array.from(map.values());
+      saveDiary();
+      renderDiary();
+      toast("Imported ✅");
+    }catch(err){
+      toast("Import failed");
+    }finally{
+      e.target.value = "";
+    }
+  };
+  reader.readAsText(file);
+});
+
+document.getElementById("btnDiaryClearAll").addEventListener("click", ()=>{
+  const ok = confirm("Xóa TẤT CẢ nhật ký trên máy này?");
+  if(!ok) return;
+  diary = [];
+  saveDiary();
+  renderDiary();
+  resetEditor();
+  toast("Cleared ✅");
+});
+
+// init
+loadDiary();
+renderDiary();
+resetEditor();
+
   </script>
 </body>
 </html>
