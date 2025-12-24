@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Trần Quốc Trung — Professional Portfolio</title>
-  <meta name="description" content="Portfolio chuyên nghiệp: Thú y • AI • Ứng dụng • Dự án • CV • Liên hệ • QR" />
+  <meta name="description" content="Portfolio chuyên nghiệp: Thú y • AI • Ứng dụng • Dự án • CV • Liên hệ • QR • Media" />
 
   <!-- SEO / Social -->
   <meta property="og:title" content="Trần Quốc Trung — Professional Portfolio" />
-  <meta property="og:description" content="Thú y • AI • Ứng dụng • Dự án • CV • Liên hệ • QR" />
+  <meta property="og:description" content="Thú y • AI • Ứng dụng • Dự án • CV • Liên hệ • QR • Media" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="avatar.jpg" />
 
@@ -420,7 +420,7 @@
     }
     .closeBtn:hover{background:rgba(255,255,255,.06)}
 
-    /* CV PREVIEW (IFRAME) ✅ */
+    /* CV PREVIEW */
     .iframeBox{
       width:100%;
       height:520px;
@@ -584,6 +584,57 @@
     }
     .qrRow{display:flex; gap:18px; flex-wrap:wrap;}
 
+    /* NEW: MEDIA (YouTube) */
+    .mediaGrid{grid-template-columns: 1.05fr .95fr}
+    .playerBox{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    .playerBox iframe{width:100%; height:420px; border:0; display:block}
+    .playlist{
+      display:grid; gap:10px;
+    }
+    .track{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      padding:12px;
+      cursor:pointer;
+      transition:.18s ease;
+      display:grid;
+      gap:6px;
+    }
+    .track:hover{transform:translateY(-1px); background:rgba(255,255,255,.06)}
+    .track.active{
+      border-color: rgba(255,59,59,.35);
+      background:linear-gradient(135deg, rgba(255,59,59,.18), rgba(255,213,74,.10));
+    }
+    .trackTop{display:flex; justify-content:space-between; gap:10px; align-items:center}
+    .trackTitle{font-weight:900; font-size:13px}
+    .trackMeta{color:var(--muted2); font-weight:900; font-size:11px; letter-spacing:.6px; text-transform:uppercase}
+    .trackDesc{color:var(--muted); font-size:12.5px; line-height:1.55; margin:0}
+    .miniBtns{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .miniBtn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      cursor:pointer;
+      font-weight:900;
+      font-size:12.5px;
+    }
+    .miniBtn:hover{background:rgba(255,255,255,.06)}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      font-weight:900; font-size:11px; color:var(--muted2);
+    }
+
     /* Responsive */
     @media (max-width: 1040px){
       .heroGrid{grid-template-columns: 1fr}
@@ -594,6 +645,8 @@
       .posts{grid-template-columns: 1fr 1fr}
       .gal{grid-template-columns: 1fr 1fr}
       .stats{grid-template-columns: 1fr 1fr}
+      .mediaGrid{grid-template-columns: 1fr}
+      .playerBox iframe{height:320px}
     }
     @media (max-width: 560px){
       .headline{font-size:32px}
@@ -602,6 +655,7 @@
       .posts{grid-template-columns: 1fr}
       .row{grid-template-columns: 1fr}
       .actions{display:none}
+      .playerBox iframe{height:240px}
     }
   </style>
 </head>
@@ -629,6 +683,10 @@
           <a href="#cv" data-spy>CV</a>
           <a href="#gallery" data-spy>Gallery</a>
           <a href="#blog" data-spy>Blog</a>
+
+          <!-- ✅ NEW -->
+          <a href="#media" data-spy>Media</a>
+
           <a href="#qr" data-spy>QR</a>
           <a href="#faq" data-spy>FAQ</a>
           <a href="#contact" data-spy>Contact</a>
@@ -669,6 +727,7 @@
             <span class="pill">📱 App/Web</span>
             <span class="pill">🌍 English</span>
             <span class="pill">📍 Cần Thơ</span>
+            <span class="pill">🎬 Media</span>
           </div>
 
           <div class="cta">
@@ -686,6 +745,13 @@
                 <small data-i18n="btnProjectsSub">Filter • Search • Modal</small>
               </span>
             </a>
+            <a class="btn" href="#media">
+              <span class="ico">🎧</span>
+              <span>
+                <span>Media • English • Music</span>
+                <small>Player + Playlist</small>
+              </span>
+            </a>
             <button class="btn" id="btnShare" type="button">
               <span class="ico">🔗</span>
               <span>
@@ -694,8 +760,6 @@
               </span>
             </button>
           </div>
-
-          <!-- ✅ ĐÃ XÓA: block note dài (theo yêu cầu) -->
         </div>
 
         <div class="card pad">
@@ -720,6 +784,11 @@
               <b data-i18n="mini4t">Ưu tiên</b>
               <span data-i18n="mini4d">Ổn định • Bảo mật • Trải nghiệm</span>
             </div>
+          </div>
+
+          <div class="item" style="margin-top:12px">
+            <h3 style="margin:0 0 6px">✅ Upgrade mới</h3>
+            <p class="muted" style="margin:0">Đã thêm mục <b>Media</b>: YouTube English + UK/US music playlist, player đổi bài nhanh.</p>
           </div>
         </div>
       </div>
@@ -969,8 +1038,6 @@
         <div class="card pad">
           <h3 style="margin:0 0 10px; font-size:15px">CV</h3>
 
-          <!-- ✅ ĐÃ XÓA: cvDesc theo yêu cầu -->
-
           <div class="cta">
             <a class="btn btnPrimary" href="CV_Trung.pdf" target="_blank" rel="noopener">
               <span class="ico">⬇️</span>
@@ -985,14 +1052,11 @@
               <span><span data-i18n="printCV">In CV</span><small data-i18n="printCVSub">Mở rồi in</small></span>
             </button>
           </div>
-
-          <!-- ✅ ĐÃ XÓA: dòng ✅ cvNote (theo yêu cầu) -->
         </div>
 
         <div class="card pad">
           <h3 style="margin:0 0 10px; font-size:15px" data-i18n="cvView">Xem CV ngay trên trang</h3>
 
-          <!-- ✅ FIX: bỏ CV_preview.jpg, thay iframe xem trực tiếp PDF -->
           <div class="iframeBox">
             <iframe src="CV_Trung.pdf#view=FitH" title="CV Preview"></iframe>
           </div>
@@ -1014,7 +1078,7 @@
       <div class="card pad">
         <div class="gal" id="gal"></div>
         <div class="muted2" style="margin-top:12px; font-weight:800; font-size:12px; line-height:1.7">
-          * <span data-i18n="galHint">file:///C:/Users/HOANG%20AN/OneDrive/M%C3%A1y%20t%C3%ADnh/multi%20files/New%20folder/dfgfdg.png.</span>
+          * <span data-i18n="galHint">Bạn có thể thay ảnh bằng link thật (hoặc upload ảnh vào repo).</span>
         </div>
       </div>
     </section>
@@ -1028,6 +1092,63 @@
 
       <div class="card pad">
         <div class="posts" id="posts"></div>
+      </div>
+    </section>
+
+    <!-- ✅ NEW: MEDIA -->
+    <section id="media">
+      <div class="titleRow">
+        <h2>Media (English • UK/US Music)</h2>
+        <span class="muted2" style="font-weight:800">YouTube Player • Playlist • Quick Switch</span>
+      </div>
+
+      <div class="grid mediaGrid">
+        <div class="card pad">
+          <div class="item">
+            <h3 style="margin:0 0 6px">🎬 Player</h3>
+            <p class="muted" style="margin:0">
+              Chọn bài ở playlist bên phải để phát ngay. Có nút bật <b>Autoplay</b> và <b>Loop</b>.
+            </p>
+            <div class="tagRow" style="margin-top:10px">
+              <span class="chip" id="nowType">TYPE: MUSIC</span>
+              <span class="chip" id="nowTitle">NOW: Last Christmas</span>
+              <span class="chip" id="nowMode">MODE: Autoplay ON</span>
+            </div>
+          </div>
+
+          <div class="playerBox" style="margin-top:12px">
+            <iframe
+              id="ytPlayer"
+              title="YouTube Player"
+              src=""
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </div>
+
+          <div class="miniBtns">
+            <button class="miniBtn" id="btnAutoplay" type="button">⚡ Autoplay: <span id="apState">ON</span></button>
+            <button class="miniBtn" id="btnLoop" type="button">🔁 Loop: <span id="lpState">OFF</span></button>
+            <button class="miniBtn" id="btnCopyMedia" type="button">🔗 Copy video link</button>
+            <button class="miniBtn" id="btnOpenYT" type="button">▶️ Open on YouTube</button>
+          </div>
+
+          <div class="muted2" style="margin-top:10px; font-weight:800; font-size:12px; line-height:1.7">
+            * Tip: Bạn chỉ cần thay <b>videoId</b> ở playlist để đổi bài / đổi video English.
+          </div>
+        </div>
+
+        <div class="card pad">
+          <div class="item">
+            <h3 style="margin:0 0 6px">🎧 Playlist</h3>
+            <p class="muted" style="margin:0">Gồm: <b>English videos</b> + <b>UK/US music</b> (3 bài bạn yêu cầu).</p>
+          </div>
+
+          <div style="height:10px"></div>
+
+          <div class="playlist" id="playlist"></div>
+        </div>
       </div>
     </section>
 
@@ -1109,16 +1230,16 @@
         <div class="card pad">
           <div class="list">
             <details open>
-              <summary data-i18n="f1q">Cuộc sống là 10% những gì xảy ra với bạn và 90% là cách bạn phản ứng với nó – Charles R. Swindoll</summary>
-              <p data-i18n="f1a">Mọi người sẽ quên những gì bạn nói, quên những gì bạn đã làm, nhưng họ sẽ không bao giờ quên cảm xúc mà bạn mang lại cho họ – Maya Angelou..</p>
+              <summary data-i18n="f1q">Vì sao trước đây bị lỗi 404 CV?</summary>
+              <p data-i18n="f1a">Do link vẫn trỏ “assets/” nhưng bạn đã xóa thư mục assets. Bản này dùng đường dẫn trực tiếp: CV_Trung.pdf.</p>
             </details>
             <details>
               <summary data-i18n="f2q">GitHub có phân biệt chữ hoa thường không?</summary>
-              <p data-i18n="f2a">Hôm nay bạn ngồi dưới bóng mát vì có người trồng cây lâu lắm rồi – Warren Buffett.</p>
+              <p data-i18n="f2a">Có. “CV_Trung.pdf” khác “cv_trung.pdf”. Phải đúng y hệt tên file.</p>
             </details>
             <details>
               <summary data-i18n="f3q">Muốn thay ảnh/giữ đẹp thì làm sao?</summary>
-              <p data-i18n="f3a">Không một hành động tử tế nào, dù nhỏ đến đâu, lại bị lãng phí – Aesoph.</p>
+              <p data-i18n="f3a">Chỉ cần thay file avatar.jpg bằng ảnh mới (giữ đúng tên) rồi commit + push.</p>
             </details>
           </div>
         </div>
@@ -1126,16 +1247,16 @@
         <div class="card pad">
           <div class="list">
             <details>
-              <summary data-i18n="f4q">Hãy là sự thay đổi mà bạn muốn thấy trên thế giới – Mahatma gandhi</summary>
-              <p data-i18n="f4a">Hãy học cách trân trọng bản thân, có nghĩa là: đấu tranh cho hạnh phúc của bạn – Ayn Rand</p>
+              <summary data-i18n="f4q">Có thể thêm nhiều trang (multi-page) không?</summary>
+              <p data-i18n="f4a">Được. Nhưng hiện tại bạn yêu cầu 1 file duy nhất, nên làm kiểu “nhiều section” trong 1 trang cuộn.</p>
             </details>
             <details>
-              <summary data-i18n="f5q">Dũng cảm không phải là không sợ hãi: nó là khả năng hành động khi bạn sợ hãi – Bruce Lee</summary>
-              <p data-i18n="f5a">Giông bão làm cho con người mạnh mẽ hơn và không bao giờ tồn tại mãi mãi – Roy T. Bennetty.</p>
+              <summary data-i18n="f5q">Muốn form gửi tin nhắn hoạt động thật thì sao?</summary>
+              <p data-i18n="f5a">GitHub Pages không có backend. Bạn có thể dùng Google Form, Formspree, hoặc email mailto.</p>
             </details>
             <details>
-              <summary data-i18n="f6q">Có những ngày tuyệt vọng cùng cực, tôi và cuộc đời đã tha thứ cho nhau – Trịnh Công Sơn</summary>
-              <p data-i18n="f6a">Hãy luôn là phiên bản hạng nhất của chính mình, còn hơn là phiên bản hạng hai của người khác – Judy Garland.</p>
+              <summary data-i18n="f6q">Làm sao kiểm tra nhanh đã deploy chưa?</summary>
+              <p data-i18n="f6a">Mở link trực tiếp: /avatar.jpg và /CV_Trung.pdf. Nếu mở được là OK.</p>
             </details>
           </div>
         </div>
@@ -1278,19 +1399,22 @@
     animateNumber(document.getElementById("s4"), STATS.certs);
 
     /********************
-     * 2) THEME TOGGLE
+     * TOAST
      ********************/
-    const btnTheme = document.getElementById("btnTheme");
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    document.documentElement.setAttribute("data-theme", savedTheme);
-    btnTheme.querySelector(".kbd").textContent = (savedTheme === "light") ? "🌙" : "☀️";
-
     const toastEl = document.getElementById("toast");
     function toast(msg){
       toastEl.textContent = msg;
       toastEl.classList.add("show");
       setTimeout(()=> toastEl.classList.remove("show"), 1600);
     }
+
+    /********************
+     * 2) THEME TOGGLE
+     ********************/
+    const btnTheme = document.getElementById("btnTheme");
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    btnTheme.querySelector(".kbd").textContent = (savedTheme === "light") ? "🌙" : "☀️";
 
     btnTheme.addEventListener("click", ()=>{
       const cur = document.documentElement.getAttribute("data-theme") || "dark";
@@ -1303,7 +1427,6 @@
 
     /********************
      * 3) LANGUAGE TOGGLE (VI/EN)
-     * ✅ ĐÃ BỎ note1 để tránh hiện lại dòng note cũ
      ********************/
     const btnLang = document.getElementById("btnLang");
     const dict = {
@@ -1623,7 +1746,7 @@
     });
 
     /********************
-     * 6) GALLERY ✅ FIX Clinic
+     * 6) GALLERY
      ********************/
     const GALLERY = [
       {title:"Workspace", src:"https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=70"},
@@ -1632,10 +1755,7 @@
       {title:"Learning", src:"https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=70"},
       {title:"Nature", src:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=70"},
       {title:"Teamwork", src:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=70"},
-
-      /* ✅ ĐỔI LINK Clinic (link cũ hay lỗi / load chậm) */
       {title:"Clinic", src:"https://images.unsplash.com/photo-1580281658626-ee379f3c10a1?auto=format&fit=crop&w=1200&q=70"},
-
       {title:"Presentation", src:"https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=70"},
     ];
     const gal = document.getElementById("gal");
@@ -1808,6 +1928,119 @@ END:VCARD`;
       });
     }, {threshold: 0.25});
     barEls.forEach(b=>io.observe(b));
+
+    /********************
+     * 13) ✅ MEDIA PLAYER (YouTube)
+     ********************/
+    const ytPlayer = document.getElementById("ytPlayer");
+    const playlistEl = document.getElementById("playlist");
+
+    const nowTypeEl = document.getElementById("nowType");
+    const nowTitleEl = document.getElementById("nowTitle");
+    const nowModeEl = document.getElementById("nowMode");
+
+    let autoplay = true;
+    let loop = false;
+    let currentItem = null;
+
+    // ✅ Playlist: 3 bài nhạc bạn yêu cầu + 2 video English mẫu (bạn thay videoId được)
+    const MEDIA = [
+      // ENGLISH (Bạn có thể thay videoId)
+      { type:"ENGLISH", title:"English Listening • Short Story (Replace ID)", meta:"ENGLISH", desc:"Video English mẫu — thay videoId theo ý bạn.", videoId:"QbD2v2a-8I0" },
+      { type:"ENGLISH", title:"English Speaking • Shadowing (Replace ID)", meta:"ENGLISH", desc:"Video shadowing mẫu — thay videoId theo ý bạn.", videoId:"wE-4o2Qk0tw" },
+
+      // MUSIC UK/US ✅
+      { type:"MUSIC", title:"Last Christmas — Wham!", meta:"UK/US MUSIC", desc:"Bài bạn yêu cầu: Last Christmas.", videoId:"E8gmARGvPlI" },
+      { type:"MUSIC", title:"Mistletoe — Justin Bieber", meta:"UK/US MUSIC", desc:"Bài bạn yêu cầu: Mistletoe.", videoId:"LUjn3RpkcKY" },
+      { type:"MUSIC", title:"death bed — Powfu ft. beabadoobee", meta:"UK/US MUSIC", desc:"Bài bạn yêu cầu: death bed (coffee for your head).", videoId:"jJPMnTXl63E" },
+    ];
+
+    function ytEmbedUrl(videoId){
+      const params = new URLSearchParams();
+      params.set("rel","0");
+      params.set("modestbranding","1");
+      params.set("playsinline","1");
+      if(autoplay) params.set("autoplay","1");
+      if(loop){
+        params.set("loop","1");
+        params.set("playlist", videoId); // loop single video
+      }
+      return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+    }
+
+    function setActiveTrack(idx){
+      const item = MEDIA[idx];
+      if(!item) return;
+      currentItem = item;
+
+      ytPlayer.src = ytEmbedUrl(item.videoId);
+
+      nowTypeEl.textContent = `TYPE: ${item.type}`;
+      nowTitleEl.textContent = `NOW: ${item.title}`;
+      nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+
+      document.querySelectorAll(".track").forEach(el=>el.classList.remove("active"));
+      const active = document.querySelector(`.track[data-idx="${idx}"]`);
+      if(active) active.classList.add("active");
+    }
+
+    function renderPlaylist(){
+      playlistEl.innerHTML = MEDIA.map((m, idx)=>`
+        <div class="track" data-idx="${idx}">
+          <div class="trackTop">
+            <div class="trackTitle">${m.title}</div>
+            <div class="trackMeta">${m.meta}</div>
+          </div>
+          <p class="trackDesc">${m.desc}</p>
+        </div>
+      `).join("");
+
+      playlistEl.querySelectorAll(".track").forEach(el=>{
+        el.addEventListener("click", ()=>{
+          const idx = Number(el.getAttribute("data-idx"));
+          setActiveTrack(idx);
+          toast("Switched ✅");
+        });
+      });
+    }
+    renderPlaylist();
+
+    // default track: Last Christmas
+    setActiveTrack(2);
+
+    // Controls
+    const apState = document.getElementById("apState");
+    const lpState = document.getElementById("lpState");
+    document.getElementById("btnAutoplay").addEventListener("click", ()=>{
+      autoplay = !autoplay;
+      apState.textContent = autoplay ? "ON" : "OFF";
+      if(currentItem) ytPlayer.src = ytEmbedUrl(currentItem.videoId);
+      nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+      toast("Autoplay " + (autoplay ? "ON" : "OFF"));
+    });
+    document.getElementById("btnLoop").addEventListener("click", ()=>{
+      loop = !loop;
+      lpState.textContent = loop ? "ON" : "OFF";
+      if(currentItem) ytPlayer.src = ytEmbedUrl(currentItem.videoId);
+      nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+      toast("Loop " + (loop ? "ON" : "OFF"));
+    });
+
+    document.getElementById("btnCopyMedia").addEventListener("click", async ()=>{
+      if(!currentItem) return;
+      const url = `https://www.youtube.com/watch?v=${currentItem.videoId}`;
+      try{
+        await navigator.clipboard.writeText(url);
+        toast("Copied video link ✅");
+      }catch(e){
+        toast("Copy failed");
+      }
+    });
+
+    document.getElementById("btnOpenYT").addEventListener("click", ()=>{
+      if(!currentItem) return;
+      window.open(`https://www.youtube.com/watch?v=${currentItem.videoId}`, "_blank", "noopener");
+    });
   </script>
 </body>
 </html>
