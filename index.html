@@ -1745,50 +1745,49 @@
       q.value=""; cat.value="all"; renderProjects(); toast("Reset ✅");
     });
 
-    /********************
-     * 6) GALLERY
-     ********************/
-    const GALLERY = [
-      {title:"Workspace", src:"https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=70"},
-      {title:"Veterinary", src:"https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=1200&q=70"},
-      {title:"AI / Tech", src:"https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1200&q=70"},
-      {title:"Learning", src:"https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=70"},
-      {title:"Nature", src:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=70"},
-      {title:"Teamwork", src:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=70"},
-      {title:"Clinic", src:"https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=70"},
-      {title:"Presentation", src:"https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=70"},
-    ];
-    const gal = document.getElementById("gal");
-    gal.innerHTML = GALLERY.map((g,i)=>`
-  <div class="ph" data-i="${i}">
-    <img src="${g.src}" alt="${g.title}" loading="lazy">
-    <span>${g.title}</span>
-  </div>
-`).join("");
+     /********************
+ * 6) GALLERY (FIXED — render 1 lần + click modal OK)
+ ********************/
+const GALLERY = [
+  {title:"Workspace", src:"https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=70"},
+  {title:"Veterinary", src:"https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=1200&q=70"},
+  {title:"AI / Tech", src:"https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1200&q=70"},
+  {title:"Learning", src:"https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=70"},
+  {title:"Nature", src:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=70"},
+  {title:"Teamwork", src:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=70"},
+  {title:"Clinic", src:"https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=70"},
+  {title:"Presentation", src:"https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=70"},
+];
 
-gal.querySelectorAll(".ph").forEach(el=>{
-  el.addEventListener("click", ()=>{
-    const i = Number(el.getAttribute("data-i"));
-    const g = GALLERY[i];
-    openModal("Gallery • " + g.title, `
-      <div style="border-radius:18px; overflow:hidden">
-        <img src="${g.src}" style="width:100%">
-      </div>
-    `);
-  });
-});
+const gal = document.getElementById("gal");
+const FALLBACK_IMG = "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=70";
 
+function renderGallery(){
   gal.innerHTML = GALLERY.map((g,i)=>`
-  <div class="ph" data-i="${i}">
-    <img
-      src="${g.src}"
-      alt="${g.title}"
-      loading="lazy"
-      onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=70';"
-    >
-    <span>${g.title}</span>
-  </div>
-`).join("");
+    <div class="ph" data-i="${i}">
+      <img
+        src="${g.src}"
+        alt="${g.title}"
+        loading="lazy"
+        onerror="this.onerror=null; this.src='${FALLBACK_IMG}';"
+      >
+      <span>${g.title}</span>
+    </div>
+  `).join("");
+
+  gal.querySelectorAll(".ph").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      const i = Number(el.getAttribute("data-i"));
+      const g = GALLERY[i];
+      openModal("Gallery • " + g.title, `
+        <div style="border-radius:18px; overflow:hidden">
+          <img src="${g.src}" style="width:100%" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';">
+        </div>
+      `);
+    });
+  });
+}
+renderGallery();
 
     /********************
      * 7) BLOG
@@ -1945,6 +1944,9 @@ END:VCARD`;
 /********************
  * 13) ✅ MEDIA PLAYER (YouTube) — FIXED
  ********************/
+/********************
+ * 13) ✅ MEDIA PLAYER (YouTube) — CLEAN VERSION
+ ********************/
 const ytPlayer = document.getElementById("ytPlayer");
 const playlistEl = document.getElementById("playlist");
 
@@ -1956,17 +1958,127 @@ let autoplay = true;
 let loop = false;
 let currentItem = null;
 
-// ✅ Base MEDIA (bạn có thể thêm/bớt tùy thích)
+// Base list
 const MEDIA = [
-  // English learning videos (ví dụ)
   { type:"ENGLISH", title:"English Speaking Practice (Daily Conversation)", meta:"ENGLISH • PRACTICE", desc:"Video luyện speaking (tham khảo).", videoId:"Rk7b2V_ClbY" },
   { type:"ENGLISH", title:"English Listening Practice (Short Stories)", meta:"ENGLISH • LISTENING", desc:"Video luyện listening (tham khảo).", videoId:"R8bVZqv7BfI" },
 
-  // ✅ 3 bài bạn yêu cầu
+  // 3 bài anh yêu cầu
   { type:"MUSIC", title:"Last Christmas — Wham!", meta:"UK/US MUSIC", desc:"Official video.", videoId:"E8gmARGvPlI" },
   { type:"MUSIC", title:"Let Me Hear Your Voice (声をきかせて) — BIGBANG", meta:"K-POP / JP", desc:"BIGBANG Japan single.", videoId:"oQjcJBGIFsA" },
   { type:"MUSIC", title:"Lies (거짓말) — BIGBANG", meta:"K-POP", desc:"Official MV.", videoId:"2Cv3phvP8Ro" },
 ];
+
+// Add more
+const MORE_UK_US_BILLION = [
+  { type:"MUSIC", title:"Shape of You — Ed Sheeran", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"JGwWNGJdvx8" },
+  { type:"MUSIC", title:"Uptown Funk — Mark Ronson ft. Bruno Mars", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"OPf0YbXqDm0" },
+  { type:"MUSIC", title:"See You Again — Wiz Khalifa ft. Charlie Puth", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"RgKAFK5djSk" },
+  { type:"MUSIC", title:"Roar — Katy Perry", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"CevxZvSJLk8" },
+  { type:"MUSIC", title:"Dark Horse — Katy Perry ft. Juicy J", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"0KSOMA3QBU0" },
+  { type:"MUSIC", title:"Sugar — Maroon 5", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"09R8_2nJtjg" },
+  { type:"MUSIC", title:"Counting Stars — OneRepublic", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"hT_nvWreIhg" },
+  { type:"MUSIC", title:"Shake It Off — Taylor Swift", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"kNlX5C3Ubn4" },
+  { type:"MUSIC", title:"Blank Space — Taylor Swift", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"e-ORhEE9VVg" },
+  { type:"MUSIC", title:"Hello — Adele", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"YQHsXMglC9A" },
+  { type:"MUSIC", title:"Let Her Go — Passenger", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"RBumgq5yVrA" },
+  { type:"MUSIC", title:"Believer — Imagine Dragons", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"7wtfhZwyrcc" },
+  { type:"MUSIC", title:"Thunder — Imagine Dragons", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"fKopy74weus" },
+  { type:"MUSIC", title:"Girls Like You — Maroon 5 ft. Cardi B", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"aJOTlE1K90k" },
+  { type:"MUSIC", title:"Memories — Maroon 5", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"SlPhMPnQ58k" },
+  { type:"MUSIC", title:"All About That Bass — Meghan Trainor", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"7PCkvCPvDXk" },
+  { type:"MUSIC", title:"Closer — The Chainsmokers ft. Halsey", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"0zGcUoRlhmw" },
+];
+MEDIA.push(...MORE_UK_US_BILLION);
+
+function ytEmbedUrl(videoId){
+  const params = new URLSearchParams();
+  params.set("rel","0");
+  params.set("modestbranding","1");
+  params.set("playsinline","1");
+  if(autoplay) params.set("autoplay","1");
+  if(loop){
+    params.set("loop","1");
+    params.set("playlist", videoId);
+  }
+  return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+}
+
+function setActiveTrack(idx){
+  const item = MEDIA[idx];
+  if(!item) return;
+  currentItem = item;
+
+  ytPlayer.src = ytEmbedUrl(item.videoId);
+  nowTypeEl.textContent  = `TYPE: ${item.type}`;
+  nowTitleEl.textContent = `NOW: ${item.title}`;
+  nowModeEl.textContent  = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+
+  document.querySelectorAll(".track").forEach(el=>el.classList.remove("active"));
+  const active = document.querySelector(`.track[data-idx="${idx}"]`);
+  if(active) active.classList.add("active");
+}
+
+function renderPlaylist(){
+  playlistEl.innerHTML = MEDIA.map((m, idx)=>`
+    <div class="track" data-idx="${idx}">
+      <div class="trackTop">
+        <div class="trackTitle">${m.title}</div>
+        <div class="trackMeta">${m.meta}</div>
+      </div>
+      <p class="trackDesc">${m.desc}</p>
+    </div>
+  `).join("");
+
+  playlistEl.querySelectorAll(".track").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      const idx = Number(el.getAttribute("data-idx"));
+      setActiveTrack(idx);
+      toast("Switched ✅");
+    });
+  });
+}
+renderPlaylist();
+
+// Default: ưu tiên “Last Christmas”
+const defaultIdx = MEDIA.findIndex(x => (x.title || "").toLowerCase().includes("last christmas"));
+setActiveTrack(defaultIdx >= 0 ? defaultIdx : 0);
+
+// Controls
+const apState = document.getElementById("apState");
+const lpState = document.getElementById("lpState");
+
+document.getElementById("btnAutoplay").addEventListener("click", ()=>{
+  autoplay = !autoplay;
+  apState.textContent = autoplay ? "ON" : "OFF";
+  if(currentItem) ytPlayer.src = ytEmbedUrl(currentItem.videoId);
+  nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+  toast("Autoplay " + (autoplay ? "ON" : "OFF"));
+});
+
+document.getElementById("btnLoop").addEventListener("click", ()=>{
+  loop = !loop;
+  lpState.textContent = loop ? "ON" : "OFF";
+  if(currentItem) ytPlayer.src = ytEmbedUrl(currentItem.videoId);
+  nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+  toast("Loop " + (loop ? "ON" : "OFF"));
+});
+
+document.getElementById("btnCopyMedia").addEventListener("click", async ()=>{
+  if(!currentItem) return;
+  const url = `https://www.youtube.com/watch?v=${currentItem.videoId}`;
+  try{
+    await navigator.clipboard.writeText(url);
+    toast("Copied video link ✅");
+  }catch(e){
+    toast("Copy failed");
+  }
+});
+
+document.getElementById("btnOpenYT").addEventListener("click", ()=>{
+  if(!currentItem) return;
+  window.open(`https://www.youtube.com/watch?v=${currentItem.videoId}`, "_blank", "noopener");
+});
 
 // ✅ ADD MORE UK/US BILLION-VIEW TRACKS (YouTube)
 const MORE_UK_US_BILLION = [
