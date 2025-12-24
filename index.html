@@ -29,12 +29,9 @@
       --txt: rgba(255,255,255,.92);
       --muted: rgba(255,255,255,.68);
       --muted2: rgba(255,255,255,.56);
-      --brand: #ff3b3b;     /* đỏ */
-      --brand2:#ffd54a;     /* vàng */
+      --brand: #ff3b3b;
+      --brand2:#ffd54a;
       --blue:#6aa6ff;
-      --ok:#36d399;
-      --warn:#fbbf24;
-      --bad:#fb7185;
       --shadow: 0 18px 60px rgba(0,0,0,.55);
       --radius: 18px;
       --radius2: 24px;
@@ -42,72 +39,6 @@
       --ring: 0 0 0 4px rgba(255,59,59,.12);
       --glass: blur(12px);
     }
-    .qrImg{
-  width: 220px;
-  max-width: 100%;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  padding: 10px;
-}
-.qrRow{
-  display:flex;
-  gap:18px;
-  flex-wrap:wrap;
-}
-
-/* ===== CV PREVIEW ===== */
-.cv-preview{
-  position: relative;
-  width: 100%;
-  height: 520px;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.03);
-}
-
-.cv-preview-img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(.92);
-  transition: transform .3s ease, filter .3s ease;
-}
-
-.cv-preview:hover .cv-preview-img{
-  transform: scale(1.02);
-  filter: brightness(1);
-}
-
-.cv-overlay{
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(
-    180deg,
-    rgba(0,0,0,.25),
-    rgba(0,0,0,.55)
-  );
-  opacity: 0;
-  transition: opacity .25s ease;
-}
-
-.cv-preview:hover .cv-overlay{
-  opacity: 1;
-}
-
-.cv-overlay span{
-  padding: 14px 20px;
-  border-radius: 14px;
-  font-weight: 800;
-  font-size: 15px;
-  color: #fff;
-  background: linear-gradient(135deg, #ff3b3b, #ffd54a);
-  box-shadow: 0 10px 40px rgba(0,0,0,.5);
-}
 
     /* Light mode */
     [data-theme="light"]{
@@ -265,6 +196,7 @@
       color:var(--muted);
       margin:0 0 14px;
       max-width:70ch;
+      white-space:pre-line;
     }
     .metaRow{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 6px}
 
@@ -305,7 +237,7 @@
     /* Avatar big */
     .avatar{
       width:100%;
-      aspect-ratio: 1 / 1; /* to rõ */
+      aspect-ratio: 1 / 1;
       border-radius: var(--radius2);
       border:1px solid rgba(255,255,255,.16);
       overflow:hidden;
@@ -488,14 +420,47 @@
     }
     .closeBtn:hover{background:rgba(255,255,255,.06)}
 
-    /* CV */
-    .iframeBox{
-      border:1px solid var(--line);
-      border-radius:18px;
-      overflow:hidden;
-      background:rgba(255,255,255,.03);
+    /* CV PREVIEW */
+    .cv-preview{
+      position: relative;
+      width: 100%;
+      height: 520px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
     }
-    iframe{width:100%; height:560px; border:0}
+    .cv-preview-img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(.92);
+      transition: transform .3s ease, filter .3s ease;
+    }
+    .cv-preview:hover .cv-preview-img{
+      transform: scale(1.02);
+      filter: brightness(1);
+    }
+    .cv-overlay{
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55));
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+    .cv-preview:hover .cv-overlay{opacity: 1;}
+    .cv-overlay span{
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 15px;
+      color: #fff;
+      background: linear-gradient(135deg, #ff3b3b, #ffd54a);
+      box-shadow: 0 10px 40px rgba(0,0,0,.5);
+    }
 
     /* Gallery */
     .gal{display:grid; grid-template-columns: repeat(4, 1fr); gap:10px}
@@ -635,6 +600,17 @@
       padding-top:14px;
     }
 
+    /* QR cards (top showcase) */
+    .qrImg{
+      width: 220px;
+      max-width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      padding: 10px;
+    }
+    .qrRow{display:flex; gap:18px; flex-wrap:wrap;}
+
     /* Responsive */
     @media (max-width: 1040px){
       .heroGrid{grid-template-columns: 1fr}
@@ -652,7 +628,7 @@
       .projGrid{grid-template-columns: 1fr}
       .posts{grid-template-columns: 1fr}
       .row{grid-template-columns: 1fr}
-      .actions{display:none} /* gọn */
+      .actions{display:none}
     }
   </style>
 </head>
@@ -705,16 +681,13 @@
           </h1>
 
           <p class="sub" data-i18n="heroDesc">
-            "Các mẹo làm giàu nhanh chỉ dành cho kẻ lười biếng & không dám dấn thân." - Steve Maraboli
+"Các mẹo làm giàu nhanh chỉ dành cho kẻ lười biếng & không dám dấn thân." - Steve Maraboli
 "Đừng làm việc chỉ để kiếm tiền, hãy làm việc để tạo ra giá trị và tiền sẽ đến với bạn." - Steve Maraboli
 "Người giàu làm việc để học hỏi, không phải để kiếm tiền." - Robert Kiyosaki
 "Nếu bạn không tìm ra cách kiếm tiền khi đang ngủ, bạn sẽ phải làm việc cho đến khi chết." - Warren Buffett
 "Sự khác biệt lớn nhất giữa người giàu và người nghèo là cách họ sử dụng thời gian." - Robert Kiyosaki
 "Không phải bạn kiếm được bao nhiêu, mà là bạn giữ được bao nhiêu, đầu tư được bao nhiêu và bạn giữ nó hoạt động như thế." - Robert Kiyosaki
 "Đừng bao giờ phụ thuộc vào một nguồn thu nhập duy nhất. Hãy đầu tư để tạo ra nguồn thu nhập thứ hai." - Warren Buffett
-"Người giàu làm việc để học hỏi, không phải để kiếm tiền." - Robert Kiyosaki
-"Nếu bạn không tìm ra cách kiếm tiền khi đang ngủ, bạn sẽ phải làm việc cho đến khi chết." - Warren Buffett
-Các câu nói này không chỉ mang lại cảm hứng mà còn khuyến khích bạn thay đổi tư duy và hành vi để đạt được thành công trong việc làm giàu.
           </p>
 
           <div class="metaRow">
@@ -740,7 +713,7 @@ Các câu nói này không chỉ mang lại cảm hứng mà còn khuyến khíc
                 <small data-i18n="btnProjectsSub">Filter • Search • Modal</small>
               </span>
             </a>
-            <button class="btn" id="btnShare">
+            <button class="btn" id="btnShare" type="button">
               <span class="ico">🔗</span>
               <span>
                 <span data-i18n="btnShare">Chia sẻ link</span>
@@ -750,13 +723,7 @@ Các câu nói này không chỉ mang lại cảm hứng mà còn khuyến khíc
           </div>
 
           <div class="muted2" style="margin-top:12px; font-weight:800; font-size:12px; line-height:1.7">
-            ✅ <span data-i18n="note1">"Don’t cry because it’s over, smile because it happened." – Dr. Seuss
-"You only live once, but if you do it right, once is enough." – Mae West
-"Life is 10% what happens to us and 90% how we react to it." – Dennis P. Kimbro
-"Success is not final, failure is not fatal: It is the courage to continue that counts." – Winston Churchill
-"In the middle of every difficulty lies opportunity." – Albert Einstein
-Những câu châm ngôn này không chỉ mang lại động lực cho bạn mà còn giúp bạn hiểu thêm về thế giới xung quanh và bản thân mình. Hãy tìm kiếm những câu châm ngôn phù hợp với những điều bạn đang trải qua và áp dụng chúng vào cuộc sống hàng ngày để mang lại sự lạc quan và thành công. 
-6.</span>
+            ✅ <span data-i18n="note1"> Chúng ta có thể gặp nhiều thất bại nhưng chúng ta không được bị đánh bại – Maya AngelouTất cả những sự khó khăn thường là để chuẩn bị cho những người bình thường một số phận phi thường – C.S. LewisNếu bạn muốn trở nên kỳ quặc khác người, hãy tự tin khi làm điều đó (If you’re going to be weird, be confident about it) – Matt HoganBí mật của cuộc sống là ngã bảy lần và đứng dậy tám lần – trích Nhà Giả Kim | Paulo Coelho.</span>
           </div>
         </div>
 
@@ -990,7 +957,7 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
       </div>
     </section>
 
-    <!-- PROJECTS (Filter + Search + Modal) -->
+    <!-- PROJECTS -->
     <section id="projects">
       <div class="titleRow">
         <h2 data-i18n="projTitle">Dự án</h2>
@@ -1007,7 +974,7 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
             <option value="web">Web</option>
             <option value="app">App</option>
           </select>
-          <button class="btn" style="min-width:170px" id="btnReset"><span class="ico">🧽</span><span>Làm mới</span></button>
+          <button class="btn" style="min-width:170px" id="btnReset" type="button"><span class="ico">🧽</span><span>Làm mới</span></button>
         </div>
 
         <div style="height:12px"></div>
@@ -1043,7 +1010,7 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
               <span class="ico">💾</span>
               <span><span data-i18n="downloadCV">Tải về máy</span><small data-i18n="downloadCVSub">Download trực tiếp</small></span>
             </a>
-            <button class="btn" id="btnPrint">
+            <button class="btn" id="btnPrint" type="button">
               <span class="ico">🖨️</span>
               <span><span data-i18n="printCV">In CV</span><small data-i18n="printCVSub">Mở rồi in</small></span>
             </button>
@@ -1056,21 +1023,11 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
 
         <div class="card pad">
           <h3 style="margin:0 0 10px; font-size:15px" data-i18n="cvView">Xem CV ngay trên trang</h3>
-
-            <div class="cv-preview">
-  <a href="CV_Trung.pdf" target="_blank" title="Click để mở CV PDF">
-    <img
-      src="CV_preview.jpg"
-      alt="Xem nhanh CV Trần Quốc Trung"
-      class="cv-preview-img"
-      loading="lazy"
-    >
-    <div class="cv-overlay">
-      <span>👁️ Xem CV (PDF)</span>
-    </div>
-  </a>
-</div>
-
+          <div class="cv-preview">
+            <a href="CV_Trung.pdf" target="_blank" rel="noopener" title="Click để mở CV PDF">
+              <img src="CV_preview.jpg" alt="Xem nhanh CV Trần Quốc Trung" class="cv-preview-img" loading="lazy">
+              <div class="cv-overlay"><span>👁️ Xem CV (PDF)</span></div>
+            </a>
           </div>
         </div>
       </div>
@@ -1103,34 +1060,37 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
       </div>
     </section>
 
-    <!-- QR (Generate QR) -->
+    <!-- QR -->
     <section id="qr">
-      <div class="<div class="grid2">
-  <div class="card pad">
-    <h3 style="margin:0 0 10px;font-size:15px">QR Website</h3>
-    <img class="qrImg" id="qrSite" alt="QR Website">
-    <div class="muted2" id="qrSiteText" style="margin-top:10px"></div>
-  </div>
-
-  <div class="card pad">
-    <h3 style="margin:0 0 10px;font-size:15px">QR Liên hệ</h3>
-    <div class="qrRow">
-      <div>
-        <div class="muted2">Facebook</div>
-        <img class="qrImg" id="qrFb" alt="QR Facebook">
-      </div>
-      <div>
-        <div class="muted2">Zalo</div>
-        <img class="qrImg" id="qrZalo" alt="QR Zalo">
-      </div>
-    </div>
-  </div>
-</div>
-">
+      <div class="titleRow">
         <h2 data-i18n="qrTitle">QR</h2>
         <span class="muted2" style="font-weight:800" data-i18n="qrRight">Tạo QR ngay trên web</span>
       </div>
 
+      <!-- Quick QR cards -->
+      <div class="grid split2" style="margin-bottom:16px">
+        <div class="card pad">
+          <h3 style="margin:0 0 10px;font-size:15px">QR Website</h3>
+          <div id="qrSiteBox"></div>
+          <div class="muted2" id="qrSiteText" style="margin-top:10px; font-weight:800"></div>
+        </div>
+
+        <div class="card pad">
+          <h3 style="margin:0 0 10px;font-size:15px">QR Liên hệ</h3>
+          <div class="qrRow">
+            <div>
+              <div class="muted2">Facebook</div>
+              <div id="qrFbBox"></div>
+            </div>
+            <div>
+              <div class="muted2">Zalo</div>
+              <div id="qrZaloBox"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Generate QR tool -->
       <div class="grid split2">
         <div class="card pad">
           <h3 style="margin:0 0 10px; font-size:15px" data-i18n="qrMake">Tạo QR chia sẻ</h3>
@@ -1138,19 +1098,19 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
           <div class="formGrid">
             <input class="input" id="qrText" placeholder="Dán link website / Facebook / Zalo / Email..." />
             <div class="controls">
-              <button class="btn btnPrimary" style="min-width:180px" id="btnQR">
+              <button class="btn btnPrimary" style="min-width:180px" id="btnQR" type="button">
                 <span class="ico">🔳</span><span data-i18n="qrBtn">Tạo QR</span>
               </button>
-              <button class="btn" style="min-width:180px" id="btnQRUrl">
+              <button class="btn" style="min-width:180px" id="btnQRUrl" type="button">
                 <span class="ico">🌐</span><span data-i18n="qrSite">QR Website</span>
               </button>
-              <button class="btn" style="min-width:180px" id="btnQRVCF">
+              <button class="btn" style="min-width:180px" id="btnQRVCF" type="button">
                 <span class="ico">👤</span><span data-i18n="qrVcard">QR Danh thiếp</span>
               </button>
             </div>
 
             <div class="muted2" style="font-weight:800; font-size:12px; line-height:1.7">
-              ✅ <span data-i18n="qrNote">QR Website: lấy URL hiện tại. QR Danh thiếp: tạo vCard (cần bạn nhập thông tin thật ở phần Contact).</span>
+              ✅ <span data-i18n="qrNote">QR Website: lấy URL hiện tại. QR Danh thiếp: tạo vCard theo Contact.</span>
             </div>
           </div>
         </div>
@@ -1222,31 +1182,27 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
         <div class="card pad">
           <h3 style="margin:0 0 10px; font-size:15px" data-i18n="ctInfo">Thông tin liên hệ</h3>
 
-          <!-- ✅ CHỈ CẦN SỬA 3 GIÁ TRỊ: EMAIL / ZALO / FACEBOOK -->
           <div class="row">
             <div class="label">Email</div>
             <div class="value" id="emailWrap">
-              <a id="emailLink" href="mailto:trungm0325011@gtudent.ctu.edu.vn">📧 <span id="emailText"trungm0325011@gtudent.ctu.edu.vn</span></a>
-              <button class="copyBtn" data-copy="#emailText">Copy</button>
+              <a id="emailLink" href="mailto:trungm0325011@gstudent.ctu.edu.vn">📧 <span id="emailText">trungm0325011@gstudent.ctu.edu.vn</span></a>
+              <button class="copyBtn" data-copy="#emailText" type="button">Copy</button>
             </div>
           </div>
 
           <div class="row">
             <div class="label">Zalo</div>
             <div class="value" id="zaloWrap">
-              <a id="zaloLink" href="https://zalo.me/0" target="_blank" rel="noopener">💬 <span id="zaloText">zalo.me/0945350772</span></a>
-              <button class="copyBtn" data-copy="#zaloText">Copy</button>
-              <div class="muted2" style="font-size:12px; margin-top:6px; font-weight:800">
-                * Thay số 0 bằng số/ID Zalo của bạn (hoặc link chính xác).
-              </div>
+              <a id="zaloLink" href="https://zalo.me/0945350772" target="_blank" rel="noopener">💬 <span id="zaloText">zalo.me/0945350772</span></a>
+              <button class="copyBtn" data-copy="#zaloText" type="button">Copy</button>
             </div>
           </div>
 
           <div class="row">
             <div class="label">Facebook</div>
             <div class="value" id="fbWrap">
-              <a id="fbLink" href="https://facebook.com/yourprofile" target="_blank" rel="noopener">🔵 <span id="fbText">facebook.com/TranQuocTrung</span></a>
-              <button class="copyBtn" data-copy="#fbText">Copy</button>
+              <a id="fbLink" href="https://www.facebook.com/langtukid94/" target="_blank" rel="noopener">🔵 <span id="fbText">facebook.com/langtukid94</span></a>
+              <button class="copyBtn" data-copy="#fbText" type="button">Copy</button>
             </div>
           </div>
 
@@ -1266,7 +1222,7 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
             <input class="input" id="subject" placeholder="Chủ đề..." />
             <textarea class="input textarea" id="message" placeholder="Nội dung..."></textarea>
 
-            <button class="btn btnPrimary" id="btnMail">
+            <button class="btn btnPrimary" id="btnMail" type="button">
               <span class="ico">✉️</span>
               <span><span data-i18n="sendMail">Gửi email</span><small data-i18n="sendMailSub">Mở Gmail/Outlook</small></span>
             </button>
@@ -1284,7 +1240,7 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
   </main>
 
   <!-- Back to top -->
-  <button class="topBtn" id="topBtn" title="Lên đầu">↑</button>
+  <button class="topBtn" id="topBtn" title="Lên đầu" type="button">↑</button>
 
   <!-- Toast -->
   <div class="toast" id="toast">Copied!</div>
@@ -1294,7 +1250,7 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
     <div class="modal" role="dialog" aria-modal="true">
       <div class="modalHead">
         <b id="mTitle">Title</b>
-        <button class="closeBtn" id="mClose" aria-label="Close">✕</button>
+        <button class="closeBtn" id="mClose" aria-label="Close" type="button">✕</button>
       </div>
       <div class="modalBody" id="mBody"></div>
     </div>
@@ -1304,11 +1260,10 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
     /********************
      * 0) CONFIG (SỬA NHANH)
      ********************/
-    // ✅ Sửa 3 thông tin thật của bạn ở đây (đỡ phải tìm trong HTML)
     const CONTACT = {
-      email: "yourmail@gmail.com",
-      zalo:  "https://zalo.me/0",
-      facebook: "https://facebook.com/yourprofile"
+      email: "trungm0325011@gstudent.ctu.edu.vn",
+      zalo:  "https://zalo.me/0945350772",
+      facebook: "https://www.facebook.com/langtukid94/"
     };
 
     // ✅ Số liệu highlights
@@ -1319,7 +1274,6 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
      ********************/
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Apply contact
     function applyContact(){
       const emailLink = document.getElementById("emailLink");
       const emailText = document.getElementById("emailText");
@@ -1338,7 +1292,6 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
     }
     applyContact();
 
-    // Animate stats
     function animateNumber(el, to){
       let cur = 0;
       const step = Math.max(1, Math.floor(to/40));
@@ -1361,6 +1314,13 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
     document.documentElement.setAttribute("data-theme", savedTheme);
     btnTheme.querySelector(".kbd").textContent = (savedTheme === "light") ? "🌙" : "☀️";
 
+    const toastEl = document.getElementById("toast");
+    function toast(msg){
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      setTimeout(()=> toastEl.classList.remove("show"), 1600);
+    }
+
     btnTheme.addEventListener("click", ()=>{
       const cur = document.documentElement.getAttribute("data-theme") || "dark";
       const next = (cur === "dark") ? "light" : "dark";
@@ -1371,7 +1331,7 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
     });
 
     /********************
-     * 3) LANGUAGE TOGGLE (VI/EN)
+     * 3) LANGUAGE TOGGLE (VI/EN) - giữ gọn, vẫn chạy
      ********************/
     const btnLang = document.getElementById("btnLang");
     const dict = {
@@ -1379,9 +1339,11 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
         role:"Veterinary • AI • App Builder",
         status:"Online • Sẵn sàng hợp tác",
         hello:"Xin chào, tôi là",
-        heroDesc:"Tôi xây dựng portfolio này để giới thiệu rõ ràng về bản thân, kỹ năng, dự án và CV. File avatar.jpg và CV_Trung.pdf đặt cùng cấp với index.html (không dùng thư mục assets).",
-        btnCV:"Xem & Tải CV", btnProjects:"Xem dự án", btnProjectsSub:"Filter • Search • Modal",
-        btnShare:"Chia sẻ link", btnShareSub:"Copy URL nhanh",
+        btnCV:"Xem & Tải CV",
+        btnProjects:"Xem dự án",
+        btnProjectsSub:"Filter • Search • Modal",
+        btnShare:"Chia sẻ link",
+        btnShareSub:"Copy URL nhanh",
         note1:"Nếu bạn bị 404 như trước, nguyên nhân là link còn trỏ “assets/”. Bản này đã loại bỏ hoàn toàn.",
         aboutTitle:"Giới thiệu chuyên nghiệp", aboutRight:"Tổng quan rõ ràng",
         aboutMeT:"Tôi là ai?", aboutMeD:"Tôi theo hướng kết hợp giữa kiến thức Thú y và công nghệ để tạo ra giải pháp thực tế. Tôi ưu tiên làm việc có hệ thống, dễ mở rộng, rõ ràng và trình bày chuyên nghiệp.",
@@ -1421,14 +1383,14 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
         galTitle:"Gallery", galRight:"Modal ảnh • Responsive", galHint:"Bạn có thể thay ảnh bằng link thật (hoặc upload ảnh vào repo).",
         blogTitle:"Blog mini", blogRight:"Bài viết • Gợi ý nội dung",
         qrTitle:"QR", qrRight:"Tạo QR ngay trên web", qrMake:"Tạo QR chia sẻ", qrBtn:"Tạo QR", qrSite:"QR Website", qrVcard:"QR Danh thiếp",
-        qrNote:"QR Website: lấy URL hiện tại. QR Danh thiếp: tạo vCard (cần bạn nhập thông tin thật ở phần Contact).",
+        qrNote:"QR Website: lấy URL hiện tại. QR Danh thiếp: tạo vCard theo Contact.",
         qrResult:"Kết quả QR",
         faqTitle:"FAQ", faqRight:"Câu hỏi thường gặp",
         f1q:"Vì sao trước đây bị lỗi 404 CV?", f1a:"Do link vẫn trỏ “assets/” nhưng bạn đã xóa thư mục assets. Bản này dùng đường dẫn trực tiếp: CV_Trung.pdf.",
         f2q:"GitHub có phân biệt chữ hoa thường không?", f2a:"Có. “CV_Trung.pdf” khác “cv_trung.pdf”. Phải đúng y hệt tên file.",
         f3q:"Muốn thay ảnh/giữ đẹp thì làm sao?", f3a:"Chỉ cần thay file avatar.jpg bằng ảnh mới (giữ đúng tên) rồi commit + push.",
-        f4q:"Có thể thêm nhiều trang (multi-page) không?", f4a:"Được. Nhưng hiện tại bạn yêu cầu 1 file duy nhất, nên Lisa làm kiểu “20 trang nội dung” trong 1 trang cuộn.",
-        f5q:"Muốn form gửi tin nhắn hoạt động thật thì sao?", f5a:"GitHub Pages không có backend. Bạn có thể dùng Google Form, Formspree, hoặc email mailto như ở đây.",
+        f4q:"Có thể thêm nhiều trang (multi-page) không?", f4a:"Được. Nhưng hiện tại bạn yêu cầu 1 file duy nhất, nên làm kiểu “nhiều section” trong 1 trang cuộn.",
+        f5q:"Muốn form gửi tin nhắn hoạt động thật thì sao?", f5a:"GitHub Pages không có backend. Bạn có thể dùng Google Form, Formspree, hoặc email mailto.",
         f6q:"Làm sao kiểm tra nhanh đã deploy chưa?", f6a:"Mở link trực tiếp: /avatar.jpg và /CV_Trung.pdf. Nếu mở được là OK.",
         ctTitle:"Liên hệ", ctRight:"Email • Zalo • Facebook",
         ctInfo:"Thông tin liên hệ",
@@ -1440,10 +1402,12 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
         role:"Veterinary • AI • App Builder",
         status:"Online • Open to collaborate",
         hello:"Hi, I'm",
-        heroDesc:"I built this portfolio to present my profile, skills, projects, and CV clearly. Files avatar.jpg and CV_Trung.pdf are placed next to index.html (no assets folder).",
-        btnCV:"View & Download CV", btnProjects:"View projects", btnProjectsSub:"Filter • Search • Modal",
-        btnShare:"Share link", btnShareSub:"Quick copy URL",
-        note1:"If you previously got 404, it was because your links still pointed to “assets/”. This version removes it completely.",
+        btnCV:"View & Download CV",
+        btnProjects:"View projects",
+        btnProjectsSub:"Filter • Search • Modal",
+        btnShare:"Share link",
+        btnShareSub:"Quick copy URL",
+        note1:"If you previously got 404, it was because links still pointed to “assets/”. This version removes it completely.",
         aboutTitle:"Professional introduction", aboutRight:"Clear overview",
         aboutMeT:"Who am I?", aboutMeD:"I combine Veterinary knowledge and technology to build practical solutions. I prefer structured work, scalability, clarity, and professional presentation.",
         valueT:"What I deliver",
@@ -1488,7 +1452,7 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
         f1q:"Why did I get 404 for CV before?", f1a:"Because your link still pointed to “assets/” but the folder was deleted. This uses direct path: CV_Trung.pdf.",
         f2q:"Is GitHub case-sensitive?", f2a:"Yes. “CV_Trung.pdf” is different from “cv_trung.pdf”. Keep exact filename.",
         f3q:"How to update avatar easily?", f3a:"Replace avatar.jpg with a new image (keep the same name) then commit + push.",
-        f4q:"Can I make it multi-page?", f4a:"Yes. But you asked for a single file; this is “20 pages worth of sections” in one scroll page.",
+        f4q:"Can I make it multi-page?", f4a:"Yes. But you asked for a single file; this is many sections in one scroll page.",
         f5q:"Can the contact form send messages directly?", f5a:"GitHub Pages has no backend by default. Use Google Form, Formspree, or mailto.",
         f6q:"How to verify deployment quickly?", f6a:"Open direct links: /avatar.jpg and /CV_Trung.pdf. If they load, you're good.",
         ctTitle:"Contact", ctRight:"Email • Zalo • Facebook",
@@ -1519,15 +1483,8 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
     });
 
     /********************
-     * 4) SHARE / COPY / TOAST
+     * 4) SHARE / COPY
      ********************/
-    const toastEl = document.getElementById("toast");
-    function toast(msg){
-      toastEl.textContent = msg;
-      toastEl.classList.add("show");
-      setTimeout(()=> toastEl.classList.remove("show"), 1600);
-    }
-
     document.getElementById("btnShare").addEventListener("click", async ()=>{
       const url = location.href.split("#")[0];
       try{
@@ -1599,6 +1556,27 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
     const cat = document.getElementById("cat");
     const btnReset = document.getElementById("btnReset");
 
+    function openModal(title, html){
+      document.getElementById("mTitle").textContent = title;
+      document.getElementById("mBody").innerHTML = html;
+      const overlay = document.getElementById("overlay");
+      overlay.classList.add("show");
+      overlay.setAttribute("aria-hidden","false");
+    }
+    function closeModal(){
+      const overlay = document.getElementById("overlay");
+      overlay.classList.remove("show");
+      overlay.setAttribute("aria-hidden","true");
+    }
+
+    document.getElementById("mClose").addEventListener("click", closeModal);
+    document.getElementById("overlay").addEventListener("click", (e)=>{
+      if(e.target.id === "overlay") closeModal();
+    });
+    window.addEventListener("keydown", (e)=>{
+      if(e.key === "Escape") closeModal();
+    });
+
     function renderProjects(){
       const query = (q.value || "").trim().toLowerCase();
       const c = cat.value;
@@ -1623,7 +1601,6 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
         </div>
       `).join("");
 
-      // Click events
       grid.querySelectorAll(".proj").forEach(el=>{
         el.addEventListener("click", ()=>{
           const id = Number(el.getAttribute("data-id"));
@@ -1658,33 +1635,7 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
     });
 
     /********************
-     * 6) MODAL
-     ********************/
-    const overlay = document.getElementById("overlay");
-    const mClose = document.getElementById("mClose");
-    const mTitle = document.getElementById("mTitle");
-    const mBody = document.getElementById("mBody");
-
-    function openModal(title, html){
-      mTitle.textContent = title;
-      mBody.innerHTML = html;
-      overlay.classList.add("show");
-      overlay.setAttribute("aria-hidden","false");
-    }
-    function closeModal(){
-      overlay.classList.remove("show");
-      overlay.setAttribute("aria-hidden","true");
-    }
-    mClose.addEventListener("click", closeModal);
-    overlay.addEventListener("click", (e)=>{
-      if(e.target === overlay) closeModal();
-    });
-    window.addEventListener("keydown", (e)=>{
-      if(e.key === "Escape") closeModal();
-    });
-
-    /********************
-     * 7) GALLERY (Demo images)
+     * 6) GALLERY
      ********************/
     const GALLERY = [
       {title:"Workspace", src:"https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=70"},
@@ -1708,9 +1659,6 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
         const i = Number(el.getAttribute("data-i"));
         const g = GALLERY[i];
         openModal("Gallery • " + g.title, `
-          <div class="item" style="margin-bottom:12px">
-            <p class="muted" style="margin:0">Bạn có thể thay ảnh demo bằng ảnh thật (upload vào repo) và chỉnh src trong mảng GALLERY ở JS.</p>
-          </div>
           <div style="border-radius:18px; overflow:hidden; border:1px solid var(--line)">
             <img src="${g.src}" alt="${g.title}" style="width:100%; height:auto;">
           </div>
@@ -1719,7 +1667,7 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
     });
 
     /********************
-     * 8) BLOG (Demo posts)
+     * 7) BLOG
      ********************/
     const POSTS = [
       {date:"2025-01-01", title:"AI trong thú y: bắt đầu từ đâu?", desc:"Gợi ý lộ trình: công cụ, use-case, cách ghi chú và triển khai thực tế."},
@@ -1735,7 +1683,7 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
         <div class="date">${p.date}</div>
         <h3>${p.title}</h3>
         <p>${p.desc}</p>
-        <button class="linkMini" style="justify-content:center; cursor:pointer" data-open="${p.title}">Read more →</button>
+        <button class="linkMini" style="justify-content:center; cursor:pointer" data-open="${p.title}" type="button">Read more →</button>
       </div>
     `).join("");
     posts.querySelectorAll("[data-open]").forEach(btn=>{
@@ -1746,30 +1694,20 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
           <div class="item">
             <h3>${p.title}</h3>
             <p>${p.desc}</p>
-            <div class="tagRow">
-              <span class="pill">Notes</span>
-              <span class="pill">Tips</span>
-              <span class="pill">Action plan</span>
-            </div>
-          </div>
-          <div class="item" style="margin-top:12px">
-            <h3>Quick template</h3>
-            <p class="muted" style="margin:0">Bạn có thể thay nội dung bài viết bằng bài thật của bạn ngay trong mảng POSTS (JS).</p>
           </div>
         `);
       });
     });
 
     /********************
-     * 9) QR GENERATOR
+     * 8) QR GENERATOR
      ********************/
     const qrBox = document.getElementById("qrBox");
     const qrCaption = document.getElementById("qrCaption");
-    let qr;
 
-    function makeQR(text){
-      qrBox.innerHTML = "";
-      qr = new QRCode(qrBox, {
+    function makeQR(targetEl, text){
+      targetEl.innerHTML = "";
+      new QRCode(targetEl, {
         text,
         width: 220,
         height: 220,
@@ -1777,6 +1715,10 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
         colorLight : "#ffffff",
         correctLevel : QRCode.CorrectLevel.H
       });
+    }
+
+    function makeMainQR(text){
+      makeQR(qrBox, text);
       qrCaption.textContent = "QR: " + text;
       toast("QR created ✅");
     }
@@ -1784,16 +1726,15 @@ Những câu châm ngôn này không chỉ mang lại động lực cho bạn m�
     document.getElementById("btnQR").addEventListener("click", ()=>{
       const text = (document.getElementById("qrText").value || "").trim();
       if(!text){ toast("Nhập nội dung để tạo QR"); return; }
-      makeQR(text);
+      makeMainQR(text);
     });
 
     document.getElementById("btnQRUrl").addEventListener("click", ()=>{
       const url = location.href.split("#")[0];
-      makeQR(url);
+      makeMainQR(url);
     });
 
     document.getElementById("btnQRVCF").addEventListener("click", ()=>{
-      // vCard basic
       const vcf =
 `BEGIN:VCARD
 VERSION:3.0
@@ -1803,19 +1744,27 @@ URL:${location.href.split("#")[0]}
 X-SOCIALPROFILE;type=facebook:${CONTACT.facebook}
 NOTE:Veterinary • AI • App Builder
 END:VCARD`;
-      makeQR(vcf);
+      makeMainQR(vcf);
     });
 
+    // Quick QR blocks (site/fb/zalo)
+    const siteUrl = location.href.split("#")[0];
+    document.getElementById("qrSiteText").textContent = siteUrl;
+
+    makeQR(document.getElementById("qrSiteBox"), siteUrl);
+    makeQR(document.getElementById("qrFbBox"), CONTACT.facebook);
+    makeQR(document.getElementById("qrZaloBox"), CONTACT.zalo);
+
     /********************
-     * 10) PRINT CV
+     * 9) PRINT CV
      ********************/
     document.getElementById("btnPrint").addEventListener("click", ()=>{
       window.open("CV_Trung.pdf", "_blank", "noopener");
-      toast("Opened CV for printing ✅");
+      toast("Opened CV ✅");
     });
 
     /********************
-     * 11) SEND MAIL (mailto)
+     * 10) SEND MAIL (mailto)
      ********************/
     document.getElementById("btnMail").addEventListener("click", ()=>{
       const name = (document.getElementById("name").value || "").trim();
@@ -1826,12 +1775,11 @@ END:VCARD`;
       const body = encodeURIComponent(
         `Name: ${name}\n\nMessage:\n${message}\n\n---\nSent from portfolio page`
       );
-      const mail = `mailto:${CONTACT.email}?subject=${sub}&body=${body}`;
-      window.location.href = mail;
+      window.location.href = `mailto:${CONTACT.email}?subject=${sub}&body=${body}`;
     });
 
     /********************
-     * 12) NAV SPY + BACK TO TOP
+     * 11) NAV SPY + BACK TO TOP
      ********************/
     const topBtn = document.getElementById("topBtn");
     topBtn.addEventListener("click", ()=> window.scrollTo({top:0, behavior:"smooth"}));
@@ -1856,7 +1804,7 @@ END:VCARD`;
     onScroll();
 
     /********************
-     * 13) SKILL BARS animate when visible
+     * 12) SKILL BARS animate when visible
      ********************/
     const barEls = document.querySelectorAll(".bar");
     const io = new IntersectionObserver((entries)=>{
@@ -1870,19 +1818,5 @@ END:VCARD`;
     }, {threshold: 0.25});
     barEls.forEach(b=>io.observe(b));
   </script>
-</body> <script>
-  const SITE_URL = "https://trungm0325011-coder.github.io/trungggggggg";
-  const FB_URL   = "https://www.facebook.com/langtukid94/";
-  const ZALO_URL = "https://zalo.me/0945350772";
-
-  const qr = (text) =>
-    "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(text);
-
-  document.getElementById("qrSite").src = qr(SITE_URL);
-  document.getElementById("qrSiteText").textContent = SITE_URL;
-
-  document.getElementById("qrFb").src = qr(FB_URL);
-  document.getElementById("qrZalo").src = qr(ZALO_URL);
-</script>
-
+</body>
 </html>
