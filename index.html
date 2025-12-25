@@ -2110,5 +2110,125 @@ END:VCARD`;
     }, {threshold: 0.25});
     barEls.forEach(b=>io.observe(b));
   </script>
+  <script>
+/* ===== MEDIA PRO JS (index.html addon) ===== */
+(function(){
+  // 1) DÁN TẤT CẢ BÀI CỦA ANH VÀO ĐÂY
+  // Format tối thiểu: { title:"...", videoId:"..." }
+  const ALL = [
+    { title:"Last Christmas — Wham!", videoId:"E8gmARGvPlI" },
+    { title:"Despacito — Luis Fonsi", videoId:"kJQP7kiw5Fk" },
+    { title:"Shape of You — Ed Sheeran", videoId:"JGwWNGJdvx8" },
+    { title:"See You Again — Wiz Khalifa", videoId:"RgKAFK5djSk" },
+    // 👉 Anh paste thêm danh sách của anh vào đây
+  ];
+
+  const $ = (id)=>document.getElementById(id);
+  const yt = $("mpYt");
+  const listEl = $("mpList");
+  const nowEl = $("mpNow");
+  const qEl = $("mpSearch");
+  const countEl = $("mpCount");
+  const shownEl = $("mpShown");
+  const modeEl  = $("mpMode");
+
+  let shuffle = true;
+  let base = dedupe(ALL);
+  let view = [...base];
+  let curIndex = -1;
+
+  function dedupe(arr){
+    const m = new Map();
+    (arr||[]).forEach(x=>{
+      if(!x || !x.videoId) return;
+      if(!m.has(x.videoId)) m.set(x.videoId, x);
+    });
+    return [...m.values()];
+  }
+  function thumb(id){ return `https://img.youtube.com/vi/${id}/mqdefault.jpg`; }
+  function embed(id){ return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`; }
+
+  function setBadges(){
+    countEl.textContent = base.length + " items";
+    shownEl.textContent = "Shown: " + view.length;
+    modeEl.textContent  = `Shuffle ${shuffle ? "ON" : "OFF"} • Loop ON`;
+    $("mpShuffle").classList.toggle("mp-on", shuffle);
+  }
+
+  function render(){
+    listEl.innerHTML = "";
+    view.forEach((s, i)=>{
+      const d = document.createElement("div");
+      d.className = "mp-item" + (i === curIndex ? " active" : "");
+      d.innerHTML = `
+        <div class="mp-thumb"><img src="${thumb(s.videoId)}" alt=""></div>
+        <div class="mp-meta">
+          <b title="${s.title}">${s.title}</b>
+          <small>YouTube</small>
+        </div>
+      `;
+      d.onclick = ()=>play(i);
+      listEl.appendChild(d);
+    });
+    setBadges();
+  }
+
+  function play(i){
+    if(view.length === 0) return;
+    curIndex = i;
+    const s = view[curIndex];
+    yt.src = embed(s.videoId);
+    nowEl.textContent = s.title;
+    render();
+  }
+
+  function next(){
+    if(view.length === 0) return;
+    if(curIndex === -1) return play(0);
+
+    if(shuffle){
+      let r = Math.floor(Math.random() * view.length);
+      if(view.length > 1 && r === curIndex) r = (r + 1) % view.length;
+      play(r);
+    } else {
+      play((curIndex + 1) % view.length); // cuộn tròn
+    }
+  }
+
+  function prev(){
+    if(view.length === 0) return;
+    if(curIndex === -1) return play(0);
+    play((curIndex - 1 + view.length) % view.length); // cuộn tròn
+  }
+
+  // Search realtime
+  qEl.addEventListener("input", ()=>{
+    const k = (qEl.value || "").trim().toLowerCase();
+    view = k ? base.filter(x => (x.title||"").toLowerCase().includes(k)) : [...base];
+    curIndex = -1;
+    nowEl.textContent = "—";
+    yt.src = "";
+    render();
+  });
+
+  // Buttons
+  $("mpNext").onclick = next;
+  $("mpPrev").onclick = prev;
+
+  $("mpPlay").onclick = ()=>{
+    if(curIndex === -1) return (view.length ? play(0) : null);
+    yt.src = embed(view[curIndex].videoId); // play lại
+  };
+
+  $("mpShuffle").onclick = ()=>{
+    shuffle = !shuffle;
+    setBadges();
+  };
+
+  // Init
+  render();
+})();
+</script>
+
 </body>
 </html>
