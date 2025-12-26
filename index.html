@@ -1911,22 +1911,7 @@
   { title:"Hãy Trao Cho Anh — Sơn Tùng M-TP", videoId:"knW7-x7Y7RE" },
 
     ];
-    // ✅ FIX: fill missing fields so playlist never breaks
-const MEDIA_FIXED = MEDIA.map(m => ({
-  type: m.type || "MUSIC",
-  title: m.title || "Untitled",
-  meta: m.meta || "VIETNAM • MUSIC",
-  desc: m.desc || "Official video.",
-  videoId: m.videoId
-})).filter(x => x.videoId); // remove any item missing videoId
-    const seen = new Set();
-    type: m.type || "MUSIC",
-    title: m.title || "Untitled",
-    meta: m.meta || "VIETNAM • MUSIC",
-    desc: m.desc || "Official video.",
-    videoId: m.videoId
-  }))
-  .filter(x => x.videoId && !seen.has(x.videoId) && seen.add(x.videoId));
+    
 
 
 
@@ -1943,42 +1928,42 @@ const MEDIA_FIXED = MEDIA.map(m => ({
       return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
     }
 
-    function setActiveTrack(idx){
-      const item = MEDIA[idx];
-      if(!item) return;
-      currentItem = item;
+    function function setActiveTrack(idx){
+  const item = MEDIA_FIXED[idx];
+  if(!item) return;
+  currentItem = item;
 
-      ytPlayer.src = ytEmbedUrl(item.videoId);
-      nowTypeEl.textContent  = `TYPE: ${item.type}`;
-      nowTitleEl.textContent = `NOW: ${item.title}`;
-      nowModeEl.textContent  = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+  ytPlayer.src = ytEmbedUrl(item.videoId);
+  nowTypeEl.textContent  = `TYPE: ${item.type}`;
+  nowTitleEl.textContent = `NOW: ${item.title}`;
+  nowModeEl.textContent  = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
 
-      document.querySelectorAll(".track").forEach(el=>el.classList.remove("active"));
-      const active = document.querySelector(`.track[data-idx="${idx}"]`);
-      if(active) active.classList.add("active");
-    }
+  document.querySelectorAll(".track").forEach(el=>el.classList.remove("active"));
+  const active = document.querySelector(`.track[data-idx="${idx}"]`);
+  if(active) active.classList.add("active");
+}
 
-    function playlistEl.innerHTML = MEDIA_FIXED.map((m, idx)=>`
 
-      playlistEl.innerHTML = MEDIA.map((m, idx)=>`
-        <div class="track" data-idx="${idx}">
-          <div class="trackTop">
-            <div class="trackTitle">${m.title}</div>
-            <div class="trackMeta">${m.meta}</div>
-          </div>
-          <p class="trackDesc">${m.desc}</p>
-        </div>
-      `).join("");
+    function function renderPlaylist(){
+  playlistEl.innerHTML = MEDIA_FIXED.map((m, idx)=>`
+    <div class="track" data-idx="${idx}">
+      <div class="trackTop">
+        <div class="trackTitle">${m.title}</div>
+        <div class="trackMeta">${m.meta}</div>
+      </div>
+      <p class="trackDesc">${m.desc}</p>
+    </div>
+  `).join("");
 
-      playlistEl.querySelectorAll(".track").forEach(el=>{
-        el.addEventListener("click", ()=>{
-          const idx = Number(el.getAttribute("data-idx"));
-         const item = MEDIA_FIXED[idx];
-;
-          toast("Switched ✅");
-        });
-      });
-    }
+  playlistEl.querySelectorAll(".track").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      const idx = Number(el.getAttribute("data-idx"));
+      setActiveTrack(idx);
+      toast("Switched ✅");
+    });
+  });
+}
+
     renderPlaylist();
 
     const defaultIdx = MEDIA_FIXED.findIndex(x => (x.title || "").toLowerCase().includes("last christmas"));
