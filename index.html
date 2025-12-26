@@ -1694,6 +1694,36 @@
         desc:"Kế hoạch nội dung: bài viết ngắn, chủ đề AI thú y, chia sẻ học tập.",
         details:["6 bài mẫu","Lịch đăng","Gợi ý tiêu đề"]},
     ];
+    /********************
+ * FIX MEDIA UNDEFINED (VPOP + thiếu field)
+ ********************/
+function normalizeMedia(list){
+  const seen = new Set();
+  const out = [];
+
+  for(const raw of list){
+    if(!raw || !raw.videoId) continue;
+
+    // bỏ trùng videoId
+    if(seen.has(raw.videoId)) continue;
+    seen.add(raw.videoId);
+
+    out.push({
+      type: (raw.type || "MUSIC").toUpperCase(),
+      title: raw.title || "(Untitled)",
+      meta: raw.meta || "VPOP / MUSIC",
+      desc: raw.desc || "Official video.",
+      videoId: raw.videoId
+    });
+  }
+  return out;
+}
+
+// ghi đè lại MEDIA
+const MEDIA_FIXED = normalizeMedia(MEDIA);
+MEDIA.length = 0;
+MEDIA.push(...MEDIA_FIXED);
+
 
     const grid = document.getElementById("projGrid");
     const q = document.getElementById("q");
