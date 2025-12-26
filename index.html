@@ -40,6 +40,7 @@
       --glass: blur(12px);
     }
 
+    /* Light mode */
     [data-theme="light"]{
       --bg:#f6f7fb;
       --bg2:#ffffff;
@@ -71,6 +72,7 @@
     img{max-width:100%; display:block}
     button{font-family:inherit}
 
+    /* Layout */
     .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
     .grid{display:grid; gap:16px}
     .card{
@@ -101,6 +103,7 @@
       box-shadow: 0 0 0 4px rgba(255,59,59,.12);
     }
 
+    /* Header */
     header{
       position:sticky; top:0; z-index:50;
       background:rgba(7,10,16,.62);
@@ -158,6 +161,7 @@
       background:linear-gradient(135deg, rgba(255,59,59,.16), rgba(255,213,74,.10));
     }
 
+    /* Top actions */
     .actions{display:flex; align-items:center; gap:8px}
     .iconBtn{
       display:inline-flex; align-items:center; justify-content:center;
@@ -173,6 +177,7 @@
     .iconBtn:focus{outline:none; box-shadow:var(--ring)}
     .kbd{font-weight:900; font-size:12px; opacity:.9}
 
+    /* Hero */
     .hero{padding:20px 0 10px}
     .heroGrid{grid-template-columns: 1.12fr .88fr; align-items:stretch}
     .headline{
@@ -195,6 +200,7 @@
     }
     .metaRow{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 6px}
 
+    /* Buttons */
     .cta{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
@@ -228,6 +234,7 @@
     }
     .btn small{display:block; margin-top:2px; font-size:11px; color:var(--muted); font-weight:800}
 
+    /* Avatar big */
     .avatar{
       width:100%;
       aspect-ratio: 1 / 1;
@@ -259,6 +266,7 @@
     .mini b{display:block; font-size:13px}
     .mini span{color:var(--muted); font-size:12px; line-height:1.45}
 
+    /* Sections */
     section{padding:10px 0 14px}
     .titleRow{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin:4px 0 12px}
     .titleRow h2{margin:0; font-size:18px; letter-spacing:-.2px}
@@ -275,6 +283,7 @@
     .item p{margin:0; color:var(--muted); font-size:13px; line-height:1.6}
     .tagRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
 
+    /* Stats */
     .stats{display:grid; grid-template-columns: repeat(4, 1fr); gap:12px}
     .stat{
       border:1px solid var(--line);
@@ -285,6 +294,7 @@
     .stat .num{font-size:22px; font-weight:900}
     .stat .lbl{color:var(--muted2); font-size:12px; font-weight:800; margin-top:4px}
 
+    /* Timeline */
     .timeline{display:grid; gap:12px}
     .tItem{
       display:grid;
@@ -299,6 +309,7 @@
     .tTitle{font-weight:900; font-size:14px; margin:0}
     .tDesc{margin:6px 0 0; color:var(--muted); font-size:13px; line-height:1.6}
 
+    /* Skills bars */
     .bars{display:grid; gap:10px}
     .bar{
       border:1px solid var(--line);
@@ -321,6 +332,7 @@
       transition: width .6s ease;
     }
 
+    /* Projects filters */
     .controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
     .input, .select{
       padding:11px 12px;
@@ -372,6 +384,7 @@
       font-size:12px;
     }
 
+    /* Modal */
     .overlay{
       position:fixed; inset:0;
       background:rgba(0,0,0,.55);
@@ -407,6 +420,7 @@
     }
     .closeBtn:hover{background:rgba(255,255,255,.06)}
 
+    /* CV PREVIEW */
     .iframeBox{
       width:100%;
       height:520px;
@@ -415,8 +429,13 @@
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.03);
     }
-    .iframeBox iframe{width:100%; height:100%; border:0;}
+    .iframeBox iframe{
+      width:100%;
+      height:100%;
+      border:0;
+    }
 
+    /* Gallery */
     .gal{display:grid; grid-template-columns: repeat(4, 1fr); gap:10px}
     .ph{
       border:1px solid var(--line);
@@ -441,6 +460,7 @@
       text-shadow:0 8px 30px rgba(0,0,0,.55);
     }
 
+    /* Blog */
     .posts{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
     .post{
       border:1px solid var(--line);
@@ -453,16 +473,22 @@
     .post h3{margin:0; font-size:14px}
     .post p{margin:0; color:var(--muted); font-size:13px; line-height:1.6}
 
+    /* FAQ */
     details{
       border:1px solid var(--line);
       border-radius:18px;
       background:rgba(255,255,255,.04);
       padding:12px 14px;
     }
-    summary{cursor:pointer; font-weight:900; list-style:none;}
+    summary{
+      cursor:pointer;
+      font-weight:900;
+      list-style:none;
+    }
     summary::-webkit-details-marker{display:none}
     details p{margin:10px 0 0; color:var(--muted); line-height:1.65; font-size:13px}
 
+    /* Contact */
     .contactGrid{grid-template-columns: 1.12fr .88fr}
     .row{
       display:grid;
@@ -499,6 +525,7 @@
     .formGrid{display:grid; gap:10px}
     .textarea{min-height:120px; resize:vertical}
 
+    /* Toast */
     .toast{
       position:fixed; right:16px; bottom:16px;
       padding:12px 14px;
@@ -518,6 +545,7 @@
     }
     .toast.show{display:block}
 
+    /* Back to top */
     .topBtn{
       position:fixed;
       left:16px;
@@ -536,6 +564,7 @@
     .topBtn.show{display:grid}
     .topBtn:hover{background:rgba(255,255,255,.08)}
 
+    /* Footer */
     footer{padding:22px 0 34px; color:var(--muted2); font-size:12px}
     .foot{
       display:flex; align-items:center; justify-content:space-between;
@@ -544,6 +573,7 @@
       padding-top:14px;
     }
 
+    /* QR cards (top showcase) */
     .qrImg{
       width: 220px;
       max-width: 100%;
@@ -554,6 +584,7 @@
     }
     .qrRow{display:flex; gap:18px; flex-wrap:wrap;}
 
+    /* NEW: MEDIA (YouTube) */
     .mediaGrid{grid-template-columns: 1.05fr .95fr}
     .playerBox{
       border:1px solid var(--line);
@@ -562,7 +593,9 @@
       overflow:hidden;
     }
     .playerBox iframe{width:100%; height:420px; border:0; display:block}
-    .playlist{display:grid; gap:10px;}
+    .playlist{
+      display:grid; gap:10px;
+    }
     .track{
       border:1px solid var(--line);
       border-radius:16px;
@@ -602,6 +635,7 @@
       font-weight:900; font-size:11px; color:var(--muted2);
     }
 
+    /* Responsive */
     @media (max-width: 1040px){
       .heroGrid{grid-template-columns: 1fr}
       .split2{grid-template-columns: 1fr}
@@ -624,110 +658,10 @@
       .playerBox iframe{height:240px}
     }
   </style>
-  <style>
-.music-player-pro{
-  max-width:520px;
-  margin:auto;
-  background:#111;
-  color:#fff;
-  border-radius:14px;
-  padding:12px;
-  font-family:system-ui;
-}
-.mp-header{
-  display:flex;
-  gap:8px;
-  align-items:center;
-}
-#searchSong{
-  flex:1;
-  padding:8px;
-  border-radius:8px;
-  border:none;
-}
-.mp-controls button{
-  background:#222;
-  color:#fff;
-  border:none;
-  padding:8px 10px;
-  border-radius:8px;
-  cursor:pointer;
-}
-.mp-body audio{
-  width:100%;
-  margin:8px 0;
-}
-.playlist{
-  max-height:220px;
-  overflow-y:auto;
-}
-.song{
-  padding:8px;
-  border-bottom:1px solid #222;
-  cursor:pointer;
-}
-.song:hover{background:#222}
-.lyrics-box{
-  margin:8px 0;
-  background:#000;
-  padding:8px;
-  border-radius:8px;
-  font-size:14px;
-}
-.lyric-vi{color:#ffd86b}
-.lyric-en{color:#7fd7ff}
-</style>
-<style>
-/* MEDIA 2 CỘT */
-.media-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:16px;
-  align-items:start;
-}
-@media (max-width: 980px){
-  .media-grid{ grid-template-columns: 1fr; }
-}
-
-/* YOUTUBE PLAYLIST */
-.yt-playlist{
-  margin-top:12px;
-  max-height:260px;
-  overflow:auto;
-  background:#111;
-  border-radius:12px;
-  padding:8px;
-}
-
-/* MP3 PRO */
-.music-player-pro{max-width:100%;}
-.playlist{
-  max-height:260px;
-  overflow:auto;
-  background:#111;
-  border-radius:12px;
-  padding:8px;
-  margin-top:10px;
-}
-.song{
-  padding:10px;
-  border-bottom:1px solid #222;
-  cursor:pointer;
-}
-.song:hover{background:#222;}
-.lyrics-box{
-  margin-top:10px;
-  background:#000;
-  padding:10px;
-  border-radius:10px;
-}
-.lyric-vi{color:#ffd86b;}
-.lyric-en{color:#7fd7ff;}
-</style>
-
 </head>
 
 <body>
+  <!-- Header -->
   <header>
     <div class="wrap">
       <div class="nav">
@@ -749,7 +683,11 @@
           <a href="#cv" data-spy>CV</a>
           <a href="#gallery" data-spy>Gallery</a>
           <a href="#blog" data-spy>Blog</a>
+
+          <!-- ✅ NEW -->
+          <a href="#blog" data-spy>Blog</a>
           <a href="#media" data-spy>Media</a>
+          <a href="#diary" data-spy>Diary</a>
           <a href="#qr" data-spy>QR</a>
           <a href="#faq" data-spy>FAQ</a>
           <a href="#contact" data-spy>Contact</a>
@@ -764,6 +702,7 @@
   </header>
 
   <main class="wrap" id="home">
+    <!-- HERO -->
     <section class="hero">
       <div class="grid heroGrid">
         <div class="card pad">
@@ -895,7 +834,7 @@
       </div>
     </section>
 
-    <!-- HIGHLIGHTS -->
+    <!-- HIGHLIGHTS + STATS -->
     <section id="highlights">
       <div class="titleRow">
         <h2 data-i18n="hlTitle">Highlights</h2>
@@ -1157,58 +1096,63 @@
       </div>
     </section>
 
-   <!-- ===== MEDIA ===== -->
-<section id="media">
-  <div class="media-grid">
+    <!-- ✅ NEW: MEDIA -->
+    <section id="media">
+      <div class="titleRow">
+        <h2>Media (English • UK/US Music)</h2>
+        <span class="muted2" style="font-weight:800">YouTube Player • Playlist • Quick Switch</span>
+      </div>
 
-    <!-- LEFT: YOUTUBE -->
-   <div class="media-left card pad">
-  <iframe
-    id="ytPlayer"
-    width="100%"
-    height="315"
-    src="https://www.youtube.com/embed/E8gmARGvPlI"
-    title="YouTube player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen
-  ></iframe>
+      <div class="grid mediaGrid">
+        <div class="card pad">
+          <div class="item">
+            <h3 style="margin:0 0 6px">🎬 Player</h3>
+            <p class="muted" style="margin:0">
+              Chọn bài ở playlist bên phải để phát ngay. Có nút bật <b>Autoplay</b> và <b>Loop</b>.
+            </p>
+            <div class="tagRow" style="margin-top:10px">
+              <span class="chip" id="nowType">TYPE: MUSIC</span>
+              <span class="chip" id="nowTitle">NOW: Last Christmas</span>
+              <span class="chip" id="nowMode">MODE: Autoplay ON</span>
+            </div>
+          </div>
 
-  <!-- ✅ search cho YouTube -->
-  <input id="ytSearch" class="input" placeholder="🔍 Tìm video YouTube..." style="margin-top:10px; min-width:100%" />
+          <div class="playerBox" style="margin-top:12px">
+            <iframe
+              id="ytPlayer"
+              title="YouTube Player"
+              src=""
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </div>
 
-  <div id="playlist" class="yt-playlist"></div>
-</div>
+          <div class="miniBtns">
+            <button class="miniBtn" id="btnAutoplay" type="button">⚡ Autoplay: <span id="apState">ON</span></button>
+            <button class="miniBtn" id="btnLoop" type="button">🔁 Loop: <span id="lpState">OFF</span></button>
+            <button class="miniBtn" id="btnCopyMedia" type="button">🔗 Copy video link</button>
+            <button class="miniBtn" id="btnOpenYT" type="button">▶️ Open on YouTube</button>
+          </div>
 
-    <!-- RIGHT: MP3 + LYRICS + SCROLL PLAYLIST -->
-    <div class="media-right card pad">
-      <div class="music-player-pro">
-        <div class="mp-header">
-          <input id="searchSong" placeholder="🔍 Tìm bài hát..." />
-          <div class="mp-controls">
-            <button onclick="prevSong()">⏮</button>
-            <button onclick="toggleRandomMode()">🔀</button>
-            <button onclick="nextSong()">⏭</button>
+          <div class="muted2" style="margin-top:10px; font-weight:800; font-size:12px; line-height:1.7">
+            * Tip: Bạn chỉ cần thay <b>videoId</b> ở playlist để đổi bài / đổi video English.
           </div>
         </div>
 
-        <audio id="audioPlayer" controls></audio>
+        <div class="card pad">
+          <div class="item">
+            <h3 style="margin:0 0 6px">🎧 Playlist</h3>
+            <p class="muted" style="margin:0">Gồm: <b>English videos</b> + <b>UK/US music</b> (3 bài bạn yêu cầu).</p>
+          </div>
 
-        <div class="lyrics-box" id="lyricsBox">
-          <div class="lyric-vi"></div>
-          <div class="lyric-en"></div>
+          <div style="height:10px"></div>
+
+          <div class="playlist" id="playlist"></div>
         </div>
-
-        <div class="playlist" id="mp3Playlist"></div>
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
-<!-- ===== END MEDIA ===== -->
-
-    <!-- YOUTUBE VIDEO -->
- 
     <!-- QR -->
     <section id="qr">
       <div class="titleRow">
@@ -1216,6 +1160,7 @@
         <span class="muted2" style="font-weight:800" data-i18n="qrRight">Tạo QR ngay trên web</span>
       </div>
 
+      <!-- Quick QR cards -->
       <div class="grid split2" style="margin-bottom:16px">
         <div class="card pad">
           <h3 style="margin:0 0 10px;font-size:15px">QR Website</h3>
@@ -1238,6 +1183,7 @@
         </div>
       </div>
 
+      <!-- Generate QR tool -->
       <div class="grid split2">
         <div class="card pad">
           <h3 style="margin:0 0 10px; font-size:15px" data-i18n="qrMake">Tạo QR chia sẻ</h3>
@@ -1386,9 +1332,13 @@
     </footer>
   </main>
 
+  <!-- Back to top -->
   <button class="topBtn" id="topBtn" title="Lên đầu" type="button">↑</button>
+
+  <!-- Toast -->
   <div class="toast" id="toast">Copied!</div>
 
+  <!-- MODAL -->
   <div class="overlay" id="overlay" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true">
       <div class="modalHead">
@@ -1409,6 +1359,7 @@
       facebook: "https://www.facebook.com/langtukid94/"
     };
 
+    // ✅ Số liệu highlights
     const STATS = { projects: 12, ai_topics: 18, posts: 6, certs: 3 };
 
     /********************
@@ -1479,92 +1430,150 @@
      * 3) LANGUAGE TOGGLE (VI/EN)
      ********************/
     const btnLang = document.getElementById("btnLang");
-    const dict = { vi:{ role:"Veterinary • AI • App Builder", status:"Online • Sẵn sàng hợp tác", hello:"Xin chào, tôi là",
-      btnCV:"Xem & Tải CV", btnProjects:"Xem dự án", btnProjectsSub:"Filter • Search • Modal",
-      btnShare:"Chia sẻ link", btnShareSub:"Copy URL nhanh",
-      aboutTitle:"Giới thiệu chuyên nghiệp", aboutRight:"Tổng quan rõ ràng",
-      aboutMeT:"Tôi là ai?", aboutMeD:"Tôi theo hướng kết hợp giữa kiến thức Thú y và công nghệ để tạo ra giải pháp thực tế. Tôi ưu tiên làm việc có hệ thống, dễ mở rộng, rõ ràng và trình bày chuyên nghiệp.",
-      valueT:"Giá trị tôi mang lại", value1t:"✅ Tối ưu rõ ràng", value1d:"Thiết kế nội dung dễ đọc, cấu trúc rõ ràng, link CV/QR hoạt động đúng.",
-      value2t:"✅ Tính chuyên nghiệp", value2d:"Giao diện “portfolio chuẩn”, có filter/search, modal, blog, gallery, QR generator.",
-      tag1:"Tư duy hệ thống", tag2:"Tối ưu trải nghiệm", tag3:"Kỷ luật & bền bỉ",
-      hlTitle:"Highlights", hlRight:"Thông tin nổi bật", statsT:"Thống kê nhanh",
-      s1:"Dự án demo", s2:"Chủ đề AI thú y", s3:"Bài viết", s4:"Chứng chỉ", statsNote:"Số liệu có thể chỉnh trong phần JS cuối file.",
-      focusT:"Trọng tâm", focus1t:"📌 Thú y + Công nghệ", focus1d:"Tập trung tính ứng dụng, tối ưu vận hành, triển khai dễ.",
-      focus2t:"📌 Trình bày chuyên nghiệp", focus2d:"Website có cấu trúc rõ, UX tốt, có tính năng đầy đủ như web doanh nghiệp.",
-      skillsTitle:"Kỹ năng", skillsRight:"Thanh đánh giá + mô tả", skillsCore:"Năng lực cốt lõi", skillsMore:"Kỹ năng bổ sung",
-      b1:"Nền tảng Thú y", b2:"AI Tools & Workflow", b3:"Web UI / GitHub Pages", b4:"Giao tiếp tiếng Anh",
-      sm1t:"🧠 Tư duy hệ thống", sm1d:"Tách module rõ, đặt tên chuẩn, link đúng đường dẫn, tránh lỗi 404.",
-      sm2t:"🧩 Thiết kế trải nghiệm", sm2d:"Filter/search dự án, modal, CTA rõ, nút copy nhanh, QR generator.",
-      sm3t:"🛡️ Chất lượng & ổn định", sm3d:"Ưu tiên website chạy mượt, responsive, cấu trúc chuyên nghiệp.",
-      tlTitle:"Timeline", tlRight:"Học tập • Công việc • Dự án", tlExp:"Kinh nghiệm / Hành trình",
-      t1t:"Nâng cấp học thuật", t1d:"Tập trung kiến thức chuyên ngành và tài liệu chuẩn, trình bày khoa học.",
-      t2t:"Portfolio / Web cá nhân", t2d:"Xây web chuyên nghiệp: CV PDF, QR, dự án, blog, gallery, contact.",
-      t3t:"Ứng dụng AI thực tế", t3d:"Ứng dụng AI hỗ trợ học tập, tra cứu, chuẩn hóa quy trình và hiệu suất.",
-      certTitle:"Chứng chỉ / Thành tựu", c1t:"Luyện tiếng Anh", c1d:"Luyện viết, luyện nói, tăng từ vựng, trình bày chuẩn.",
-      c2t:"AI trong thú y", c2d:"Tổng hợp công cụ AI: chẩn đoán, quản lý bệnh án, hỗ trợ tư vấn.",
-      c3t:"Triển khai Web", c3d:"Deploy GitHub Pages đúng cấu trúc, không lỗi assets/404.",
-      projTitle:"Dự án", projRight:"Filter • Search • Modal", projHint:"Nhấp vào 1 dự án để mở modal chi tiết.",
-      cvTitle:"CV", cvRight:"Rõ ràng • Xem trực tiếp • Tải nhanh", openCV:"Mở / Tải CV", downloadCV:"Tải về máy",
-      downloadCVSub:"Download trực tiếp", printCV:"In CV", printCVSub:"Mở rồi in", cvView:"Xem CV ngay trên trang",
-      galTitle:"Gallery", galRight:"Modal ảnh • Responsive", galHint:"Bạn có thể thay ảnh bằng link thật (hoặc upload ảnh vào repo).",
-      blogTitle:"Blog mini", blogRight:"Bài viết • Gợi ý nội dung",
-      qrTitle:"QR", qrRight:"Tạo QR ngay trên web", qrMake:"Tạo QR chia sẻ", qrBtn:"Tạo QR", qrSite:"QR Website", qrVcard:"QR Danh thiếp",
-      qrNote:"QR Website: lấy URL hiện tại. QR Danh thiếp: tạo vCard theo Contact.", qrResult:"Kết quả QR",
-      faqTitle:"FAQ", faqRight:"Câu hỏi thường gặp",
-      f1q:"Vì sao trước đây bị lỗi 404 CV?", f1a:"Do link vẫn trỏ “assets/” nhưng bạn đã xóa thư mục assets. Bản này dùng đường dẫn trực tiếp: CV_Trung.pdf.",
-      f2q:"GitHub có phân biệt chữ hoa thường không?", f2a:"Có. “CV_Trung.pdf” khác “cv_trung.pdf”. Phải đúng y hệt tên file.",
-      f3q:"Muốn thay ảnh/giữ đẹp thì làm sao?", f3a:"Chỉ cần thay file avatar.jpg bằng ảnh mới (giữ đúng tên) rồi commit + push.",
-      f4q:"Có thể thêm nhiều trang (multi-page) không?", f4a:"Được. Nhưng hiện tại bạn yêu cầu 1 file duy nhất, nên làm kiểu “nhiều section” trong 1 trang cuộn.",
-      f5q:"Muốn form gửi tin nhắn hoạt động thật thì sao?", f5a:"GitHub Pages không có backend. Bạn có thể dùng Google Form, Formspree, hoặc email mailto.",
-      f6q:"Làm sao kiểm tra nhanh đã deploy chưa?", f6a:"Mở link trực tiếp: /avatar.jpg và /CV_Trung.pdf. Nếu mở được là OK.",
-      ctTitle:"Liên hệ", ctRight:"Email • Zalo • Facebook", ctInfo:"Thông tin liên hệ",
-      ctNote:"Bạn có thể dùng QR Danh thiếp ở phần QR sau khi nhập đúng email/zalo/facebook.",
-      ctForm:"Gửi tin nhắn (mailto)", ctFormDesc:"Form này sẽ mở ứng dụng email của bạn để gửi. GitHub Pages không có backend sẵn.",
-      sendMail:"Gửi email", sendMailSub:"Mở Gmail/Outlook"
-    },
-    en:{ role:"Veterinary • AI • App Builder", status:"Online • Open to collaborate", hello:"Hi, I'm",
-      btnCV:"View & Download CV", btnProjects:"View projects", btnProjectsSub:"Filter • Search • Modal",
-      btnShare:"Share link", btnShareSub:"Quick copy URL",
-      aboutTitle:"Professional introduction", aboutRight:"Clear overview",
-      aboutMeT:"Who am I?", aboutMeD:"I combine Veterinary knowledge and technology to build practical solutions. I prefer structured work, scalability, clarity, and professional presentation.",
-      valueT:"What I deliver", value1t:"✅ Clarity first", value1d:"Readable structure, clean layout, working CV/QR links.",
-      value2t:"✅ Professional features", value2d:"Portfolio-grade UI with filters/search, modal, blog, gallery, QR generator.",
-      tag1:"System thinking", tag2:"UX-focused", tag3:"Disciplined",
-      hlTitle:"Highlights", hlRight:"Key points", statsT:"Quick stats",
-      s1:"Demo projects", s2:"AI vet topics", s3:"Posts", s4:"Certificates", statsNote:"You can edit numbers in the JS config at the bottom.",
-      focusT:"Focus areas", focus1t:"📌 Vet + Tech", focus1d:"Practical use-cases, optimized operations, easy deployment.",
-      focus2t:"📌 Professional presentation", focus2d:"Clean structure, strong UX, business-like features.",
-      skillsTitle:"Skills", skillsRight:"Skill bars + description", skillsCore:"Core skills", skillsMore:"Additional skills",
-      b1:"Veterinary Fundamentals", b2:"AI Tools & Workflow", b3:"Web UI / GitHub Pages", b4:"English Communication",
-      sm1t:"🧠 System thinking", sm1d:"Clean structure, proper naming, correct paths, avoid 404.",
-      sm2t:"🧩 UX design", sm2d:"Project filter/search, modal, clear CTA, quick copy, QR generator.",
-      sm3t:"🛡️ Quality", sm3d:"Fast, responsive, professional structure.",
-      tlTitle:"Timeline", tlRight:"Study • Work • Projects", tlExp:"Experience / Journey",
-      t1t:"Academic improvement", t1d:"Professional formatting, structured knowledge, scientific writing style.",
-      t2t:"Portfolio website", t2d:"Professional web: CV PDF, QR, projects, blog, gallery, contact.",
-      t3t:"Real-world AI usage", t3d:"AI to support learning, lookup, standardize workflows and productivity.",
-      certTitle:"Certificates / Achievements", c1t:"English practice", c1d:"Writing, speaking, vocabulary and presentation improvements.",
-      c2t:"AI in veterinary", c2d:"Curating AI tools for diagnosis, records, and assistance.",
-      c3t:"Web deployment", c3d:"GitHub Pages deployment with correct structure (no assets/404).",
-      projTitle:"Projects", projRight:"Filter • Search • Modal", projHint:"Click a project to open details modal.",
-      cvTitle:"CV", cvRight:"Clear • Embedded • Fast download", openCV:"Open / Download CV", downloadCV:"Download file", downloadCVSub:"Direct download",
-      printCV:"Print CV", printCVSub:"Open then print", cvView:"Preview CV on page",
-      galTitle:"Gallery", galRight:"Image modal • Responsive", galHint:"Replace with your real images or upload to the repo.",
-      blogTitle:"Mini blog", blogRight:"Content ideas",
-      qrTitle:"QR", qrRight:"Generate QR on-page", qrMake:"Generate sharing QR", qrBtn:"Generate QR", qrSite:"Website QR", qrVcard:"vCard QR",
-      qrNote:"Website QR uses current URL. vCard uses your contact values from config.", qrResult:"QR result",
-      faqTitle:"FAQ", faqRight:"Frequently asked questions",
-      f1q:"Why did I get 404 for CV before?", f1a:"Because your link still pointed to “assets/” but the folder was deleted. This uses direct path: CV_Trung.pdf.",
-      f2q:"Is GitHub case-sensitive?", f2a:"Yes. “CV_Trung.pdf” is different from “cv_trung.pdf”. Keep exact filename.",
-      f3q:"How to update avatar easily?", f3a:"Replace avatar.jpg with a new image (keep the same name) then commit + push.",
-      f4q:"Can I make it multi-page?", f4a:"Yes. But you asked for a single file; this is many sections in one scroll page.",
-      f5q:"Can the contact form send messages directly?", f5a:"GitHub Pages has no backend by default. Use Google Form, Formspree, or mailto.",
-      f6q:"How to verify deployment quickly?", f6a:"Open direct links: /avatar.jpg and /CV_Trung.pdf. If they load, you're good.",
-      ctTitle:"Contact", ctRight:"Email • Zalo • Facebook", ctInfo:"Contact info",
-      ctNote:"You can generate a vCard QR after you update email/zalo/facebook in config.",
-      ctForm:"Send message (mailto)", ctFormDesc:"This opens your email client to send. GitHub Pages has no backend by default.",
-      sendMail:"Send email", sendMailSub:"Open Gmail/Outlook"
-    }};
+    const dict = {
+      vi: {
+        role:"Veterinary • AI • App Builder",
+        status:"Online • Sẵn sàng hợp tác",
+        hello:"Xin chào, tôi là",
+        btnCV:"Xem & Tải CV",
+        btnProjects:"Xem dự án",
+        btnProjectsSub:"Filter • Search • Modal",
+        btnShare:"Chia sẻ link",
+        btnShareSub:"Copy URL nhanh",
+
+        aboutTitle:"Giới thiệu chuyên nghiệp", aboutRight:"Tổng quan rõ ràng",
+        aboutMeT:"Tôi là ai?", aboutMeD:"Tôi theo hướng kết hợp giữa kiến thức Thú y và công nghệ để tạo ra giải pháp thực tế. Tôi ưu tiên làm việc có hệ thống, dễ mở rộng, rõ ràng và trình bày chuyên nghiệp.",
+        valueT:"Giá trị tôi mang lại",
+        value1t:"✅ Tối ưu rõ ràng", value1d:"Thiết kế nội dung dễ đọc, cấu trúc rõ ràng, link CV/QR hoạt động đúng.",
+        value2t:"✅ Tính chuyên nghiệp", value2d:"Giao diện “portfolio chuẩn”, có filter/search, modal, blog, gallery, QR generator.",
+        tag1:"Tư duy hệ thống", tag2:"Tối ưu trải nghiệm", tag3:"Kỷ luật & bền bỉ",
+
+        hlTitle:"Highlights", hlRight:"Thông tin nổi bật",
+        statsT:"Thống kê nhanh",
+        s1:"Dự án demo", s2:"Chủ đề AI thú y", s3:"Bài viết", s4:"Chứng chỉ",
+        statsNote:"Số liệu có thể chỉnh trong phần JS cuối file.",
+        focusT:"Trọng tâm",
+        focus1t:"📌 Thú y + Công nghệ", focus1d:"Tập trung tính ứng dụng, tối ưu vận hành, triển khai dễ.",
+        focus2t:"📌 Trình bày chuyên nghiệp", focus2d:"Website có cấu trúc rõ, UX tốt, có tính năng đầy đủ như web doanh nghiệp.",
+
+        skillsTitle:"Kỹ năng", skillsRight:"Thanh đánh giá + mô tả",
+        skillsCore:"Năng lực cốt lõi", skillsMore:"Kỹ năng bổ sung",
+        b1:"Nền tảng Thú y", b2:"AI Tools & Workflow", b3:"Web UI / GitHub Pages", b4:"Giao tiếp tiếng Anh",
+        sm1t:"🧠 Tư duy hệ thống", sm1d:"Tách module rõ, đặt tên chuẩn, link đúng đường dẫn, tránh lỗi 404.",
+        sm2t:"🧩 Thiết kế trải nghiệm", sm2d:"Filter/search dự án, modal, CTA rõ, nút copy nhanh, QR generator.",
+        sm3t:"🛡️ Chất lượng & ổn định", sm3d:"Ưu tiên website chạy mượt, responsive, cấu trúc chuyên nghiệp.",
+
+        tlTitle:"Timeline", tlRight:"Học tập • Công việc • Dự án",
+        tlExp:"Kinh nghiệm / Hành trình",
+        t1t:"Nâng cấp học thuật", t1d:"Tập trung kiến thức chuyên ngành và tài liệu chuẩn, trình bày khoa học.",
+        t2t:"Portfolio / Web cá nhân", t2d:"Xây web chuyên nghiệp: CV PDF, QR, dự án, blog, gallery, contact.",
+        t3t:"Ứng dụng AI thực tế", t3d:"Ứng dụng AI hỗ trợ học tập, tra cứu, chuẩn hóa quy trình và hiệu suất.",
+
+        certTitle:"Chứng chỉ / Thành tựu",
+        c1t:"Luyện tiếng Anh", c1d:"Luyện viết, luyện nói, tăng từ vựng, trình bày chuẩn.",
+        c2t:"AI trong thú y", c2d:"Tổng hợp công cụ AI: chẩn đoán, quản lý bệnh án, hỗ trợ tư vấn.",
+        c3t:"Triển khai Web", c3d:"Deploy GitHub Pages đúng cấu trúc, không lỗi assets/404.",
+
+        projTitle:"Dự án", projRight:"Filter • Search • Modal", projHint:"Nhấp vào 1 dự án để mở modal chi tiết.",
+
+        cvTitle:"CV", cvRight:"Rõ ràng • Xem trực tiếp • Tải nhanh",
+        openCV:"Mở / Tải CV", downloadCV:"Tải về máy", downloadCVSub:"Download trực tiếp",
+        printCV:"In CV", printCVSub:"Mở rồi in",
+        cvView:"Xem CV ngay trên trang",
+
+        galTitle:"Gallery", galRight:"Modal ảnh • Responsive", galHint:"Bạn có thể thay ảnh bằng link thật (hoặc upload ảnh vào repo).",
+        blogTitle:"Blog mini", blogRight:"Bài viết • Gợi ý nội dung",
+
+        qrTitle:"QR", qrRight:"Tạo QR ngay trên web", qrMake:"Tạo QR chia sẻ", qrBtn:"Tạo QR", qrSite:"QR Website", qrVcard:"QR Danh thiếp",
+        qrNote:"QR Website: lấy URL hiện tại. QR Danh thiếp: tạo vCard theo Contact.",
+        qrResult:"Kết quả QR",
+
+        faqTitle:"FAQ", faqRight:"Câu hỏi thường gặp",
+        f1q:"Vì sao trước đây bị lỗi 404 CV?", f1a:"Do link vẫn trỏ “assets/” nhưng bạn đã xóa thư mục assets. Bản này dùng đường dẫn trực tiếp: CV_Trung.pdf.",
+        f2q:"GitHub có phân biệt chữ hoa thường không?", f2a:"Có. “CV_Trung.pdf” khác “cv_trung.pdf”. Phải đúng y hệt tên file.",
+        f3q:"Muốn thay ảnh/giữ đẹp thì làm sao?", f3a:"Chỉ cần thay file avatar.jpg bằng ảnh mới (giữ đúng tên) rồi commit + push.",
+        f4q:"Có thể thêm nhiều trang (multi-page) không?", f4a:"Được. Nhưng hiện tại bạn yêu cầu 1 file duy nhất, nên làm kiểu “nhiều section” trong 1 trang cuộn.",
+        f5q:"Muốn form gửi tin nhắn hoạt động thật thì sao?", f5a:"GitHub Pages không có backend. Bạn có thể dùng Google Form, Formspree, hoặc email mailto.",
+        f6q:"Làm sao kiểm tra nhanh đã deploy chưa?", f6a:"Mở link trực tiếp: /avatar.jpg và /CV_Trung.pdf. Nếu mở được là OK.",
+
+        ctTitle:"Liên hệ", ctRight:"Email • Zalo • Facebook",
+        ctInfo:"Thông tin liên hệ",
+        ctNote:"Bạn có thể dùng QR Danh thiếp ở phần QR sau khi nhập đúng email/zalo/facebook.",
+        ctForm:"Gửi tin nhắn (mailto)", ctFormDesc:"Form này sẽ mở ứng dụng email của bạn để gửi. GitHub Pages không có backend sẵn.",
+        sendMail:"Gửi email", sendMailSub:"Mở Gmail/Outlook",
+      },
+      en: {
+        role:"Veterinary • AI • App Builder",
+        status:"Online • Open to collaborate",
+        hello:"Hi, I'm",
+        btnCV:"View & Download CV",
+        btnProjects:"View projects",
+        btnProjectsSub:"Filter • Search • Modal",
+        btnShare:"Share link",
+        btnShareSub:"Quick copy URL",
+
+        aboutTitle:"Professional introduction", aboutRight:"Clear overview",
+        aboutMeT:"Who am I?", aboutMeD:"I combine Veterinary knowledge and technology to build practical solutions. I prefer structured work, scalability, clarity, and professional presentation.",
+        valueT:"What I deliver",
+        value1t:"✅ Clarity first", value1d:"Readable structure, clean layout, working CV/QR links.",
+        value2t:"✅ Professional features", value2d:"Portfolio-grade UI with filters/search, modal, blog, gallery, QR generator.",
+        tag1:"System thinking", tag2:"UX-focused", tag3:"Disciplined",
+
+        hlTitle:"Highlights", hlRight:"Key points",
+        statsT:"Quick stats",
+        s1:"Demo projects", s2:"AI vet topics", s3:"Posts", s4:"Certificates",
+        statsNote:"You can edit numbers in the JS config at the bottom.",
+        focusT:"Focus areas",
+        focus1t:"📌 Vet + Tech", focus1d:"Practical use-cases, optimized operations, easy deployment.",
+        focus2t:"📌 Professional presentation", focus2d:"Clean structure, strong UX, business-like features.",
+
+        skillsTitle:"Skills", skillsRight:"Skill bars + description",
+        skillsCore:"Core skills", skillsMore:"Additional skills",
+        b1:"Veterinary Fundamentals", b2:"AI Tools & Workflow", b3:"Web UI / GitHub Pages", b4:"English Communication",
+        sm1t:"🧠 System thinking", sm1d:"Clean structure, proper naming, correct paths, avoid 404.",
+        sm2t:"🧩 UX design", sm2d:"Project filter/search, modal, clear CTA, quick copy, QR generator.",
+        sm3t:"🛡️ Quality", sm3d:"Fast, responsive, professional structure.",
+
+        tlTitle:"Timeline", tlRight:"Study • Work • Projects",
+        tlExp:"Experience / Journey",
+        t1t:"Academic improvement", t1d:"Professional formatting, structured knowledge, scientific writing style.",
+        t2t:"Portfolio website", t2d:"Professional web: CV PDF, QR, projects, blog, gallery, contact.",
+        t3t:"Real-world AI usage", t3d:"AI to support learning, lookup, standardize workflows and productivity.",
+
+        certTitle:"Certificates / Achievements",
+        c1t:"English practice", c1d:"Writing, speaking, vocabulary and presentation improvements.",
+        c2t:"AI in veterinary", c2d:"Curating AI tools for diagnosis, records, and assistance.",
+        c3t:"Web deployment", c3d:"GitHub Pages deployment with correct structure (no assets/404).",
+
+        projTitle:"Projects", projRight:"Filter • Search • Modal", projHint:"Click a project to open details modal.",
+
+        cvTitle:"CV", cvRight:"Clear • Embedded • Fast download",
+        openCV:"Open / Download CV", downloadCV:"Download file", downloadCVSub:"Direct download",
+        printCV:"Print CV", printCVSub:"Open then print",
+        cvView:"Preview CV on page",
+
+        galTitle:"Gallery", galRight:"Image modal • Responsive", galHint:"Replace with your real images or upload to the repo.",
+        blogTitle:"Mini blog", blogRight:"Content ideas",
+
+        qrTitle:"QR", qrRight:"Generate QR on-page", qrMake:"Generate sharing QR", qrBtn:"Generate QR", qrSite:"Website QR", qrVcard:"vCard QR",
+        qrNote:"Website QR uses current URL. vCard uses your contact values from config.",
+        qrResult:"QR result",
+
+        faqTitle:"FAQ", faqRight:"Frequently asked questions",
+        f1q:"Why did I get 404 for CV before?", f1a:"Because your link still pointed to “assets/” but the folder was deleted. This uses direct path: CV_Trung.pdf.",
+        f2q:"Is GitHub case-sensitive?", f2a:"Yes. “CV_Trung.pdf” is different from “cv_trung.pdf”. Keep exact filename.",
+        f3q:"How to update avatar easily?", f3a:"Replace avatar.jpg with a new image (keep the same name) then commit + push.",
+        f4q:"Can I make it multi-page?", f4a:"Yes. But you asked for a single file; this is many sections in one scroll page.",
+        f5q:"Can the contact form send messages directly?", f5a:"GitHub Pages has no backend by default. Use Google Form, Formspree, or mailto.",
+        f6q:"How to verify deployment quickly?", f6a:"Open direct links: /avatar.jpg and /CV_Trung.pdf. If they load, you're good.",
+
+        ctTitle:"Contact", ctRight:"Email • Zalo • Facebook",
+        ctInfo:"Contact info",
+        ctNote:"You can generate a vCard QR after you update email/zalo/facebook in config.",
+        ctForm:"Send message (mailto)", ctFormDesc:"This opens your email client to send. GitHub Pages has no backend by default.",
+        sendMail:"Send email", sendMailSub:"Open Gmail/Outlook",
+      }
+    };
 
     let lang = localStorage.getItem("lang") || "vi";
     function applyLang(){
@@ -1738,7 +1747,7 @@
     });
 
     /********************
-     * 6) GALLERY (render 1 lần + click modal OK)
+     * 6) GALLERY
      ********************/
     const GALLERY = [
       {title:"Workspace", src:"https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=70"},
@@ -1751,31 +1760,30 @@
       {title:"Presentation", src:"https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=70"},
     ];
     const gal = document.getElementById("gal");
-    const FALLBACK_IMG = "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=70";
+    gal.innerHTML = GALLERY.map((g,i)=>`
+  <div class="ph" data-i="${i}">
+    <img
+      src="${g.src}"
+      alt="${g.title}"
+      loading="lazy"
+      onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=70';"
+    >
+    <span>${g.title}</span>
+  </div>
+`).join("");
 
-    function renderGallery(){
-      gal.innerHTML = GALLERY.map((g,i)=>`
-        <div class="ph" data-i="${i}">
-          <img src="${g.src}" alt="${g.title}" loading="lazy"
-               onerror="this.onerror=null; this.src='${FALLBACK_IMG}';">
-          <span>${g.title}</span>
-        </div>
-      `).join("");
-
-      gal.querySelectorAll(".ph").forEach(el=>{
-        el.addEventListener("click", ()=>{
-          const i = Number(el.getAttribute("data-i"));
-          const g = GALLERY[i];
-          openModal("Gallery • " + g.title, `
-            <div style="border-radius:18px; overflow:hidden">
-              <img src="${g.src}" style="width:100%"
-                   onerror="this.onerror=null; this.src='${FALLBACK_IMG}';">
-            </div>
-          `);
-        });
+    `).join("");
+    gal.querySelectorAll(".ph").forEach(el=>{
+      el.addEventListener("click", ()=>{
+        const i = Number(el.getAttribute("data-i"));
+        const g = GALLERY[i];
+        openModal("Gallery • " + g.title, `
+          <div style="border-radius:18px; overflow:hidden; border:1px solid var(--line)">
+            <img src="${g.src}" alt="${g.title}" style="width:100%; height:auto;">
+          </div>
+        `);
       });
-    }
-    renderGallery();
+    });
 
     /********************
      * 7) BLOG
@@ -1810,365 +1818,8 @@
       });
     });
 
- /********************
- * 8) ✅ MEDIA (YouTube + MP3) — CLEAN, SEARCH, RANDOM, SCROLL
- ********************/
-const ytPlayerEl = document.getElementById("ytPlayer");
-const ytListEl   = document.getElementById("playlist");
-const ytSearchEl = document.getElementById("ytSearch");
-
-const mp3ListEl  = document.getElementById("mp3Playlist");
-const mp3SearchEl= document.getElementById("searchSong");
-const audioEl    = document.getElementById("audioPlayer");
-const lyricsBox  = document.getElementById("lyricsBox");
-const lyricViEl  = lyricsBox ? lyricsBox.querySelector(".lyric-vi") : null;
-const lyricEnEl  = lyricsBox ? lyricsBox.querySelector(".lyric-en") : null;
-
-// ✅ Dùng MEDIA của anh cho YouTube (nếu item không có type/meta/desc thì set mặc định)
-const YT = (Array.isArray(MEDIA) ? MEDIA : []).map(x => ({
-  type: x.type || "MUSIC",
-  title: x.title || "Untitled",
-  meta: x.meta || "YOUTUBE",
-  desc: x.desc || "",
-  videoId: x.videoId || ""
-})).filter(x => x.videoId);
-
-// ✅ MP3 playlist: anh tự thay src bằng file mp3 thật (local hoặc url https)
-const MP3 = [
-      { type:"MUSIC", title:"Last Christmas — Wham!", meta:"UK/US MUSIC", desc:"Official video.", videoId:"E8gmARGvPlI" },
-      { type:"MUSIC", title:"Let Me Hear Your Voice (声をきかせて) — BIGBANG", meta:"K-POP / JP", desc:"BIGBANG Japan single.", videoId:"oQjcJBGIFsA" },
-      { type:"MUSIC", title:"Lies (거짓말) — BIGBANG", meta:"K-POP", desc:"Official MV.", videoId:"2Cv3phvP8Ro" },
-      { type:"MUSIC", title:"Despacito — Luis Fonsi ft. Daddy Yankee", meta:"GLOBAL • 8B+", desc:"Official video.", videoId:"kJQP7kiw5Fk" },
-      { type:"MUSIC", title:"See You Again — Wiz Khalifa ft. Charlie Puth", meta:"US/UK • 6B+", desc:"Official video.", videoId:"RgKAFK5djSk" },
-      { type:"MUSIC", title:"Shape of You — Ed Sheeran", meta:"US/UK • 6B+", desc:"Official video.", videoId:"JGwWNGJdvx8" },
-      { type:"MUSIC", title:"Uptown Funk — Mark Ronson ft. Bruno Mars", meta:"US/UK • 5B+", desc:"Official video.", videoId:"OPf0YbXqDm0" },
-      { type:"MUSIC", title:"Gangnam Style — PSY", meta:"GLOBAL • 5B+", desc:"Official video.", videoId:"9bZkp7q19f0" }, 
-      { type:"MUSIC", title:"Sorry — Justin Bieber", meta:"US/UK • 4B+", desc:"Official video.", videoId:"fRh_vgS2dFE" },
-      { type:"MUSIC", title:"Sugar — Maroon 5", meta:"US/UK • 4B+", desc:"Official video.", videoId:"09R8_2nJtjg" },
-      { type:"MUSIC", title:"Roar — Katy Perry", meta:"US/UK • 4B+", desc:"Official video.", videoId:"CevxZvSJLk8" },
-      { type:"MUSIC", title:"Thinking Out Loud — Ed Sheeran", meta:"US/UK • 4B+", desc:"Official video.", videoId:"lp-EO5I60KA" },
-      { type:"MUSIC", title:"Counting Stars — OneRepublic", meta:"US/UK • 4B+", desc:"Official video.", videoId:"hT_nvWreIhg" },
-      { type:"MUSIC", title:"Dark Horse — Katy Perry", meta:"US/UK • 4B+", desc:"Official video.", videoId:"0KSOMA3QBU0" },
-      { type:"MUSIC", title:"Faded — Alan Walker", meta:"US/UK • 3B+", desc:"Official video.", videoId:"60ItHLz5WEA" },
-      { type:"MUSIC", title:"Believer — Imagine Dragons", meta:"US/UK • 3B+", desc:"Official video.", videoId:"7wtfhZwyrcc" },
-      { type:"MUSIC", title:"Lean On — Major Lazer & DJ Snake", meta:"US/UK • 3B+", desc:"Official video.", videoId:"YqeW9_5kURI" },
-      { type:"MUSIC", title:"Perfect — Ed Sheeran", meta:"US/UK • 3B+", desc:"Official video.", videoId:"2Vv-BfVoq4g" },
-      { type:"MUSIC", title:"Havana — Camila Cabello", meta:"US/UK • 2B+", desc:"Official video.", videoId:"HCjNJDNzw8Y" },
-      { type:"MUSIC", title:"Bad Guy — Billie Eilish", meta:"US/UK • 2B+", desc:"Official video.", videoId:"DyDfgMOUjCI" },
-      { type:"MUSIC", title:"Closer — The Chainsmokers ft. Halsey", meta:"US/UK • 3B+", desc:"Official video.", videoId:"0zGcUoRlhmw" },
-      { type:"MUSIC", title:"Girls Like You — Maroon 5 ft. Cardi B", meta:"US/UK • 3B+", desc:"Official video.", videoId:"aJOTlE1K90k" },
-      { type:"MUSIC", title:"Cheap Thrills — Sia", meta:"US/UK • 2B+", desc:"Official video.", videoId:"nYh-n7EOtMA" },
-      { type:"MUSIC", title:"Shape of You — Ed Sheeran", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"JGwWNGJdvx8" },
-      { type:"MUSIC", title:"Uptown Funk — Mark Ronson ft. Bruno Mars", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"OPf0YbXqDm0" },
-      { type:"MUSIC", title:"See You Again — Wiz Khalifa ft. Charlie Puth", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"RgKAFK5djSk" },
-      { type:"MUSIC", title:"Roar — Katy Perry", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"CevxZvSJLk8" },
-      { type:"MUSIC", title:"Sugar — Maroon 5", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"09R8_2nJtjg" },
-      { type:"MUSIC", title:"Counting Stars — OneRepublic", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"hT_nvWreIhg" },
-      { type:"MUSIC", title:"Hello — Adele", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"YQHsXMglC9A" },
-      { type:"MUSIC", title:"Believer — Imagine Dragons", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"7wtfhZwyrcc" },
-      { type:"MUSIC", title:"Girls Like You — Maroon 5 ft. Cardi B", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"aJOTlE1K90k" },
-      { type:"MUSIC", title:"Closer — The Chainsmokers ft. Halsey", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"0zGcUoRlhmw" },
-      { type:"MUSIC", title:"Waka Waka (This Time for Africa) — Shakira", meta:"GLOBAL • 3B+", desc:"Official video.", videoId:"pRpeEdMmmQ0" },
-{ type:"MUSIC", title:"Chantaje — Shakira ft. Maluma", meta:"GLOBAL • 3B+", desc:"Official video.", videoId:"6Mgqbai3fKo" },
-{ type:"MUSIC", title:"Hips Don't Lie — Shakira ft. Wyclef Jean", meta:"GLOBAL • 1B+", desc:"Official video.", videoId:"DUT5rEU6pqM" },
-{ type:"MUSIC", title:"Mi Gente — J Balvin, Willy William", meta:"GLOBAL • 3B+", desc:"Official video.", videoId:"wnJ6LuUFpMo" },
-{ type:"MUSIC", title:"Bailando — Enrique Iglesias ft. Descemer Bueno, Gente De Zona", meta:"GLOBAL • 3B+", desc:"Official video.", videoId:"NUsoVlDFqZg" },
-{ type:"MUSIC", title:"Dame Tu Cosita — El Chombo", meta:"GLOBAL • 4B+", desc:"Official video.", videoId:"FzG4uDgje3M" },
-{ type:"MUSIC", title:"Taki Taki — DJ Snake ft. Selena Gomez, Ozuna, Cardi B", meta:"GLOBAL • 2B+", desc:"Official video.", videoId:"ixkoVwKQaJg" },
-{ type:"MUSIC", title:"Con Calma — Daddy Yankee & Snow", meta:"GLOBAL • 2B+", desc:"Official video.", videoId:"DiItGE3eAyQ" },
-{ type:"MUSIC", title:"Súbeme La Radio — Enrique Iglesias", meta:"GLOBAL • 1B+", desc:"Official video.", videoId:"9sg-A-eS6Ig" },
-{ type:"MUSIC", title:"Dura — Daddy Yankee", meta:"GLOBAL • 1B+", desc:"Official video.", videoId:"sGIm0-dQd8M" },
-
-{ type:"MUSIC", title:"Let Her Go — Passenger", meta:"US/UK • 3B+", desc:"Official video.", videoId:"RBumgq5yVrA" },
-{ type:"MUSIC", title:"Chandelier — Sia", meta:"US/UK • 3B+", desc:"Official video.", videoId:"2vjPBrBU-TM" },
-{ type:"MUSIC", title:"Thunder — Imagine Dragons", meta:"US/UK • 2B+", desc:"Official video.", videoId:"fKopy74weus" },
-{ type:"MUSIC", title:"Demons — Imagine Dragons", meta:"US/UK • 1B+", desc:"Official video.", videoId:"mWRsgZuwf_8" },
-{ type:"MUSIC", title:"Radioactive — Imagine Dragons", meta:"US/UK • 1B+", desc:"Official video.", videoId:"ktvTqknDobU" },
-{ type:"MUSIC", title:"Love Me Like You Do — Ellie Goulding", meta:"US/UK • 2B+", desc:"Official video.", videoId:"AJtDXIazrMo" },
-{ type:"MUSIC", title:"All About That Bass — Meghan Trainor", meta:"US/UK • 2B+", desc:"Official video.", videoId:"7PCkvCPvDXk" },
-{ type:"MUSIC", title:"Wake Me Up — Avicii", meta:"US/UK • 2B+", desc:"Official video.", videoId:"IcrbM1l_BoI" },
-{ type:"MUSIC", title:"The Nights — Avicii", meta:"US/UK • 1B+", desc:"Official video.", videoId:"UtF6Jej8yb4" },
-{ type:"MUSIC", title:"Somebody That I Used To Know — Gotye ft. Kimbra", meta:"US/UK • 2B+", desc:"Official video.", videoId:"8UVNT4wvIGY" },
-
-{ type:"MUSIC", title:"Blank Space — Taylor Swift", meta:"US/UK • 3B+", desc:"Official video.", videoId:"e-ORhEE9VVg" },
-{ type:"MUSIC", title:"Shake It Off — Taylor Swift", meta:"US/UK • 3B+", desc:"Official video.", videoId:"nfWlot6h_JM" },
-{ type:"MUSIC", title:"Look What You Made Me Do — Taylor Swift", meta:"US/UK • 1B+", desc:"Official video.", videoId:"3tmd-ClpJxA" },
-{ type:"MUSIC", title:"Girls Just Want To Have Fun — Cyndi Lauper", meta:"US/UK • 1B+", desc:"Official video.", videoId:"PIb6AZdTr-A" },
-
-{ type:"MUSIC", title:"Sorry (Lyric/Video) — Justin Bieber (alt)", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"PfGaX8G0f2E" },
-{ type:"MUSIC", title:"Baby — Justin Bieber ft. Ludacris", meta:"US/UK • 3B+", desc:"Official video.", videoId:"kffacxfA7G4" },
-{ type:"MUSIC", title:"What Do You Mean? — Justin Bieber", meta:"US/UK • 2B+", desc:"Official video.", videoId:"DK_0jXPuIr0" },
-
-{ type:"MUSIC", title:"Counting Stars (alt upload) — OneRepublic", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"hT_nvWreIhg" },
-{ type:"MUSIC", title:"Wolves — Selena Gomez x Marshmello", meta:"US/UK • 1B+", desc:"Official video.", videoId:"cH4E_t3m3xM" },
-{ type:"MUSIC", title:"It Ain't Me — Kygo & Selena Gomez", meta:"US/UK • 1B+", desc:"Official video.", videoId:"D5drYkLiLI8" },
-
-{ type:"MUSIC", title:"Counting Stars (Live/Alt) — OneRepublic", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"hT_nvWreIhg" },
-{ type:"MUSIC", title:"Love The Way You Lie — Eminem ft. Rihanna", meta:"US/UK • 2B+", desc:"Official video.", videoId:"uelHwf8o7_U" },
-{ type:"MUSIC", title:"The Monster — Eminem ft. Rihanna", meta:"US/UK • 1B+", desc:"Official video.", videoId:"EHkozMIXZ8w" },
-{ type:"MUSIC", title:"Umbrella — Rihanna ft. JAY-Z", meta:"US/UK • 1B+", desc:"Official video.", videoId:"CvBfHwUxHIk" },
-{ type:"MUSIC", title:"Diamonds — Rihanna", meta:"US/UK • 2B+", desc:"Official video.", videoId:"lWA2pjMjpBs" },
-{ type:"MUSIC", title:"We Found Love — Rihanna ft. Calvin Harris", meta:"US/UK • 1B+", desc:"Official video.", videoId:"tg00YEETFzg" },
-
-{ type:"MUSIC", title:"Stay With Me — Sam Smith", meta:"US/UK • 1B+", desc:"Official video.", videoId:"pB-5XG-DbAA" },
-{ type:"MUSIC", title:"I’m Not The Only One — Sam Smith", meta:"US/UK • 1B+", desc:"Official video.", videoId:"nCkpzqqog4k" },
-
-{ type:"MUSIC", title:"Hello — Lionel Richie", meta:"US/UK • 1B+", desc:"Official video.", videoId:"mHONNcZbwDY" },
-{ type:"MUSIC", title:"Billie Jean — Michael Jackson", meta:"US/UK • 1B+", desc:"Official video.", videoId:"Zi_XLOBDo_Y" },
-{ type:"MUSIC", title:"Beat It — Michael Jackson", meta:"US/UK • 1B+", desc:"Official video.", videoId:"oRdxUFDoQe0" },
-{ type:"MUSIC", title:"Thriller — Michael Jackson", meta:"US/UK • 1B+", desc:"Official video.", videoId:"sOnqjkJTMaA" },
-
-{ type:"MUSIC", title:"Smells Like Teen Spirit — Nirvana", meta:"US/UK • 1B+", desc:"Official video.", videoId:"hTWKbfoikeg" },
-{ type:"MUSIC", title:"Numb — Linkin Park", meta:"US/UK • 2B+", desc:"Official video.", videoId:"kXYiU_JCYtU" },
-{ type:"MUSIC", title:"In The End — Linkin Park", meta:"US/UK • 1B+", desc:"Official video.", videoId:"eVTXPUF4Oz4" },
-
-{ type:"MUSIC", title:"Bohemian Rhapsody — Queen", meta:"US/UK • 1B+", desc:"Official video.", videoId:"fJ9rUzIMcZQ" },
-{ type:"MUSIC", title:"Take On Me — a-ha", meta:"US/UK • 1B+", desc:"Official video.", videoId:"djV11Xbc914" },
-
-{ type:"MUSIC", title:"7 Years — Lukas Graham", meta:"US/UK • 1B+", desc:"Official video.", videoId:"LHCob76kigA" },
-{ type:"MUSIC", title:"Stressed Out — Twenty One Pilots", meta:"US/UK • 1B+", desc:"Official video.", videoId:"pXRviuL6vMY" },
-{ type:"MUSIC", title:"Heathens — Twenty One Pilots", meta:"US/UK • 1B+", desc:"Official video.", videoId:"UprcpdwuwCg" },
-
-{ type:"MUSIC", title:"Happier — Marshmello ft. Bastille", meta:"US/UK • 1B+", desc:"Official video.", videoId:"m7Bc3pLyij0" },
-{ type:"MUSIC", title:"Falling — Trevor Daniel", meta:"US/UK • 1B+", desc:"Official video.", videoId:"L7mfjvdnPno" },
-
-{ type:"MUSIC", title:"Sunflower — Post Malone & Swae Lee", meta:"US/UK • 2B+", desc:"Official video.", videoId:"ApXoWvfEYVU" },
-{ type:"MUSIC", title:"Rockstar — Post Malone ft. 21 Savage", meta:"US/UK • 3B+", desc:"Official video.", videoId:"UceaB4D0jpo" },
-{ type:"MUSIC", title:"God's Plan — Drake", meta:"US/UK • 1B+", desc:"Official video.", videoId:"xpVfcZ0ZcFM" },
-
-{ type:"MUSIC", title:"Counting Stars (duplicate-safe alt) — OneRepublic", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"hT_nvWreIhg" },
-
-{ type:"MUSIC", title:"Work — Rihanna ft. Drake", meta:"US/UK • 1B+", desc:"Official video.", videoId:"HL1UzIK-flA" },
-{ type:"MUSIC", title:"This Is What You Came For — Calvin Harris ft. Rihanna", meta:"US/UK • 1B+", desc:"Official video.", videoId:"kOkQ4T5WO9E" },
-
-{ type:"MUSIC", title:"New Rules — Dua Lipa", meta:"US/UK • 3B+", desc:"Official video.", videoId:"k2qgadSvNyU" },
-{ type:"MUSIC", title:"IDGAF — Dua Lipa", meta:"US/UK • 1B+", desc:"Official video.", videoId:"Mgfe5tIwOj0" },
-
-{ type:"MUSIC", title:"Let Me Love You — DJ Snake ft. Justin Bieber", meta:"US/UK • 1B+", desc:"Official video.", videoId:"euCqAq6BRa4" },
-{ type:"MUSIC", title:"Hymn For The Weekend — Coldplay", meta:"US/UK • 2B+", desc:"Official video.", videoId:"YykjpeuMNEk" },
-{ type:"MUSIC", title:"Paradise — Coldplay", meta:"US/UK • 1B+", desc:"Official video.", videoId:"1G4isv_Fylg" },
-{ type:"MUSIC", title:"Something Just Like This — The Chainsmokers & Coldplay", meta:"US/UK • 2B+", desc:"Official video.", videoId:"FM7MFYoylVs" },
-
-{ type:"MUSIC", title:"Señorita — Shawn Mendes, Camila Cabello", meta:"US/UK • 1B+", desc:"Official video.", videoId:"Pkh8UtuejGw" },
-{ type:"MUSIC", title:"Treat You Better — Shawn Mendes", meta:"US/UK • 2B+", desc:"Official video.", videoId:"lY2yjAdbvdQ" },
-
-{ type:"MUSIC", title:"One Kiss — Calvin Harris & Dua Lipa", meta:"US/UK • 1B+", desc:"Official video.", videoId:"DkeiKbqa02g" },
-{ type:"MUSIC", title:"This Is What You Came For (alt) — Calvin Harris ft. Rihanna", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"kOkQ4T5WO9E" },
-
-{ type:"MUSIC", title:"One Dance — Drake ft. Wizkid & Kyla", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"iAbnEUA0wpA" },
-{ type:"MUSIC", title:"Hotline Bling — Drake", meta:"US/UK • 2B+", desc:"Official video.", videoId:"uxpDa-c-4Mc" },
-
-{ type:"MUSIC", title:"Closer (alt upload) — The Chainsmokers ft. Halsey", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"PT2_F-1esPk" },
-{ type:"MUSIC", title:"Animals — Maroon 5", meta:"US/UK • 1B+", desc:"Official video.", videoId:"qpgTC9MDx1o" },
-{ type:"MUSIC", title:"Memories — Maroon 5", meta:"US/UK • 1B+", desc:"Official video.", videoId:"SlPhMPnQ58k" },
-{ type:"MUSIC", title:"Girls Like You (alt upload) — Maroon 5 ft. Cardi B", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"FJ7YqMMmttQ" },
-
-{ type:"MUSIC", title:"Hello (alt upload) — Adele", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"YQHsXMglC9A" },
-{ type:"MUSIC", title:"Someone Like You — Adele", meta:"US/UK • 1B+", desc:"Official video.", videoId:"hLQl3WQQoQ0" },
-
-{ type:"MUSIC", title:"Happy — Pharrell Williams", meta:"US/UK • 1B+", desc:"Official video.", videoId:"ZbZSe6N_BXs" },
-{ type:"MUSIC", title:"All of Me — John Legend", meta:"US/UK • 2B+", desc:"Official video.", videoId:"450p7goxZqg" },
-
-{ type:"MUSIC", title:"Rude — MAGIC!", meta:"US/UK • 1B+", desc:"Official video.", videoId:"PIh2xe4jnpk" },
-{ type:"MUSIC", title:"Some Nights — fun.", meta:"US/UK • 1B+", desc:"Official video.", videoId:"qQkBeOisNM0" },
-
-{ type:"MUSIC", title:"Counting Stars (keep one only) — OneRepublic", meta:"US/UK • 1B+", desc:"(Nếu trùng thì xoá bớt)", videoId:"hT_nvWreIhg" },
-{ title:"Sóng Gió — Jack & K-ICM", videoId:"U6n2NcJ7rLc" },
-  { title:"Bạc Phận — Jack & K-ICM", videoId:"pA7w3gq1zGQ" },
-  { title:"Em Gì Ơi — Jack & K-ICM", videoId:"q-Tkz5c4a9A" },
-  { title:"Hồng Nhan — Jack", videoId:"7D7v3s1s7nA" },
-  { title:"Có Chắc Yêu Là Đây — Sơn Tùng M-TP", videoId:"6t-MjBazs3o" },
-  { title:"Chạy Ngay Đi — Sơn Tùng M-TP", videoId:"32sYGCOYJUM" },
-  { title:"Lạc Trôi — Sơn Tùng M-TP", videoId:"Llw9Q6akRo4" },
-  { title:"Em Của Ngày Hôm Qua — Sơn Tùng M-TP", videoId:"pLk9yYzF_xU" },
-  { title:"Nơi Này Có Anh — Sơn Tùng M-TP", videoId:"FN7ALfpGxiI" },
-  { title:"Hãy Trao Cho Anh — Sơn Tùng M-TP", videoId:"knW7-x7Y7RE" },
-    ];
-
-
-let ytIndex = 0;
-let mp3Index = 0;
-
-let ytRandom = false;
-let mp3Random = false;
-
-function ytEmbed(videoId){
-  // autoplay nhẹ (tránh một số browser chặn)
-  return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`;
-}
-
-/* ===== YOUTUBE ===== */
-function renderYT(list){
-  if(!ytListEl) return;
-  ytListEl.innerHTML = list.map((m, idx) => `
-    <div class="track ${idx===ytIndex ? "active":""}" data-yt="${idx}">
-      <div class="trackTop">
-        <div class="trackTitle">${m.title}</div>
-        <div class="trackMeta">${m.meta}</div>
-      </div>
-      <p class="trackDesc">${m.desc || ""}</p>
-    </div>
-  `).join("");
-
-  ytListEl.querySelectorAll("[data-yt]").forEach(el=>{
-    el.addEventListener("click", ()=>{
-      const i = Number(el.getAttribute("data-yt"));
-      playYT(i);
-    });
-  });
-}
-
-function playYT(i){
-  const item = YT[i];
-  if(!item || !ytPlayerEl) return;
-  ytIndex = i;
-  ytPlayerEl.src = ytEmbed(item.videoId);
-
-  // active UI
-  ytListEl?.querySelectorAll(".track").forEach(t=>t.classList.remove("active"));
-  ytListEl?.querySelector(`[data-yt="${i}"]`)?.classList.add("active");
-}
-
-function filterYT(q){
-  const s = (q||"").trim().toLowerCase();
-  if(!s) return YT;
-  return YT.filter(x =>
-    (x.title||"").toLowerCase().includes(s) ||
-    (x.meta||"").toLowerCase().includes(s) ||
-    (x.desc||"").toLowerCase().includes(s)
-  );
-}
-
-/* ===== MP3 ===== */
-function renderMP3(list){
-  if(!mp3ListEl) return;
-  mp3ListEl.innerHTML = list.map((s, idx)=>`
-    <div class="song" data-mp3="${idx}">
-      <b>${s.title}</b><div class="muted2" style="font-size:12px">${s.artist || ""}</div>
-    </div>
-  `).join("");
-
-  mp3ListEl.querySelectorAll("[data-mp3]").forEach(el=>{
-    el.addEventListener("click", ()=>{
-      const i = Number(el.getAttribute("data-mp3"));
-      playMP3(i);
-    });
-  });
-}
-
-function playMP3(i){
-  const song = MP3[i];
-  if(!song) return;
-  mp3Index = i;
-
-  // Nếu chưa có src, chỉ hiển thị info (không crash)
-  if(audioEl){
-    if(song.src){
-      audioEl.src = song.src;
-      audioEl.play?.().catch(()=>{});
-    }else{
-      audioEl.removeAttribute("src");
-      audioEl.load();
-      toast("MP3 chưa có link src (hãy thay src bằng file MP3 thật) ⚠️");
-    }
-  }
-
-  if(lyricViEl) lyricViEl.textContent = song.lyricVI ? song.lyricVI : "(Chưa có lời VI)";
-  if(lyricEnEl) lyricEnEl.textContent = song.lyricEN ? song.lyricEN : "(Chưa có lời EN)";
-}
-
-function filterMP3(q){
-  const s = (q||"").trim().toLowerCase();
-  if(!s) return MP3;
-  return MP3.filter(x =>
-    (x.title||"").toLowerCase().includes(s) ||
-    (x.artist||"").toLowerCase().includes(s)
-  );
-}
-
-/* ===== BUTTONS (global functions for onclick) ===== */
-window.prevSong = function(){
-  if(mp3Random && MP3.length>1){
-    let r = mp3Index;
-    while(r===mp3Index) r = Math.floor(Math.random()*MP3.length);
-    playMP3(r);
-    return;
-  }
-  const i = (mp3Index - 1 + MP3.length) % MP3.length;
-  playMP3(i);
-};
-
-window.nextSong = function(){
-  if(mp3Random && MP3.length>1){
-    let r = mp3Index;
-    while(r===mp3Index) r = Math.floor(Math.random()*MP3.length);
-    playMP3(r);
-    return;
-  }
-  const i = (mp3Index + 1) % MP3.length;
-  playMP3(i);
-};
-
-window.toggleRandomMode = function(){
-  mp3Random = !mp3Random;
-  toast(mp3Random ? "MP3 Random: ON 🔀" : "MP3 Random: OFF");
-};
-
-/* ===== WIRE SEARCH ===== */
-if(ytSearchEl){
-  ytSearchEl.addEventListener("input", ()=>{
-    const list = filterYT(ytSearchEl.value);
-    // Khi lọc, render theo list lọc, nhưng play vẫn theo index gốc.
-    // Đơn giản: render list lọc và click sẽ play theo index trong list lọc:
-    ytListEl.innerHTML = list.map((m)=> {
-      const realIdx = YT.findIndex(x=>x.videoId===m.videoId);
-      return `
-        <div class="track ${realIdx===ytIndex ? "active":""}" data-yt="${realIdx}">
-          <div class="trackTop">
-            <div class="trackTitle">${m.title}</div>
-            <div class="trackMeta">${m.meta}</div>
-          </div>
-          <p class="trackDesc">${m.desc || ""}</p>
-        </div>
-      `;
-    }).join("");
-
-    ytListEl.querySelectorAll("[data-yt]").forEach(el=>{
-      el.addEventListener("click", ()=>{
-        playYT(Number(el.getAttribute("data-yt")));
-      });
-    });
-  });
-}
-
-if(mp3SearchEl){
-  mp3SearchEl.addEventListener("input", ()=>{
-    const list = filterMP3(mp3SearchEl.value);
-    // render theo list lọc nhưng play theo index thật
-    mp3ListEl.innerHTML = list.map((s)=> {
-      const realIdx = MP3.findIndex(x=>x.title===s.title && x.artist===s.artist);
-      return `
-        <div class="song" data-mp3="${realIdx}">
-          <b>${s.title}</b><div class="muted2" style="font-size:12px">${s.artist || ""}</div>
-        </div>
-      `;
-    }).join("");
-    mp3ListEl.querySelectorAll("[data-mp3]").forEach(el=>{
-      el.addEventListener("click", ()=> playMP3(Number(el.getAttribute("data-mp3"))));
-    });
-  });
-}
-
-/* ===== INIT ===== */
-renderYT(YT);
-renderMP3(MP3);
-
-// play mặc định
-if(YT.length) playYT(0);
-if(MP3.length) playMP3(0);
-
     /********************
-     * 9) QR GENERATOR
+     * 8) QR GENERATOR
      ********************/
     const qrBox = document.getElementById("qrBox");
     const qrCaption = document.getElementById("qrCaption");
@@ -2215,6 +1866,7 @@ END:VCARD`;
       makeMainQR(vcf);
     });
 
+    // Quick QR blocks (site/fb/zalo)
     const siteUrl = location.href.split("#")[0];
     document.getElementById("qrSiteText").textContent = siteUrl;
 
@@ -2223,7 +1875,7 @@ END:VCARD`;
     makeQR(document.getElementById("qrZaloBox"), CONTACT.zalo);
 
     /********************
-     * 10) PRINT CV
+     * 9) PRINT CV
      ********************/
     document.getElementById("btnPrint").addEventListener("click", ()=>{
       window.open("CV_Trung.pdf", "_blank", "noopener");
@@ -2231,7 +1883,7 @@ END:VCARD`;
     });
 
     /********************
-     * 11) SEND MAIL (mailto)
+     * 10) SEND MAIL (mailto)
      ********************/
     document.getElementById("btnMail").addEventListener("click", ()=>{
       const name = (document.getElementById("name").value || "").trim();
@@ -2246,7 +1898,7 @@ END:VCARD`;
     });
 
     /********************
-     * 12) NAV SPY + BACK TO TOP
+     * 11) NAV SPY + BACK TO TOP
      ********************/
     const topBtn = document.getElementById("topBtn");
     topBtn.addEventListener("click", ()=> window.scrollTo({top:0, behavior:"smooth"}));
@@ -2271,7 +1923,7 @@ END:VCARD`;
     onScroll();
 
     /********************
-     * 13) SKILL BARS animate when visible
+     * 12) SKILL BARS animate when visible
      ********************/
     const barEls = document.querySelectorAll(".bar");
     const io = new IntersectionObserver((entries)=>{
@@ -2284,6 +1936,147 @@ END:VCARD`;
       });
     }, {threshold: 0.25});
     barEls.forEach(b=>io.observe(b));
+
+    /********************
+     * 13) ✅ MEDIA PLAYER (YouTube)
+     ********************/
+    const ytPlayer = document.getElementById("ytPlayer");
+    const playlistEl = document.getElementById("playlist");
+
+    const nowTypeEl = document.getElementById("nowType");
+    const nowTitleEl = document.getElementById("nowTitle");
+    const nowModeEl = document.getElementById("nowMode");
+
+    let autoplay = true;
+    let loop = false;
+    let currentItem = null;
+
+  /********************
+ * MEDIA PLAYLIST (FULL)
+ ********************/
+const MEDIA = [
+  // ===== YOUR ORIGINAL SONGS =====
+  { type:"MUSIC", title:"Last Christmas — Wham!", meta:"UK/US MUSIC", desc:"Last Christmas.", videoId:"E8gmARGvPlI" },
+  { type:"MUSIC", title:"Mistletoe — Justin Bieber", meta:"UK/US MUSIC", desc:"Mistletoe.", videoId:"LUjn3RpkcKY" },
+  { type:"MUSIC", title:"death bed — Powfu ft. beabadoobee", meta:"UK/US MUSIC", desc:"death bed (coffee for your head).", videoId:"jJPMnTXl63E" },
+
+  // ===== UK/US BILLION VIEW SONGS =====
+  { type:"MUSIC", title:"Shape of You — Ed Sheeran", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"JGwWNGJdvx8" },
+  { type:"MUSIC", title:"See You Again — Wiz Khalifa ft. Charlie Puth", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"RgKAFK5djSk" },
+  { type:"MUSIC", title:"Uptown Funk — Mark Ronson ft. Bruno Mars", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"OPf0YbXqDm0" },
+  { type:"MUSIC", title:"Sorry — Justin Bieber", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"fRh_vgS2dFE" },
+  { type:"MUSIC", title:"Roar — Katy Perry", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"CevxZvSJLk8" },
+  { type:"MUSIC", title:"Dark Horse — Katy Perry ft. Juicy J", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"0KSOMA3QBU0" },
+  { type:"MUSIC", title:"Sugar — Maroon 5", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"09R8_2nJtjg" },
+  { type:"MUSIC", title:"Counting Stars — OneRepublic", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"hT_nvWreIhg" },
+  { type:"MUSIC", title:"Hello — Adele", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"YQHsXMglC9A" },
+  { type:"MUSIC", title:"Thinking Out Loud — Ed Sheeran", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"lp-EO5I60KA" },
+  { type:"MUSIC", title:"Perfect — Ed Sheeran", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"2Vv-BfVoq4g" },
+  { type:"MUSIC", title:"Shake It Off — Taylor Swift", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"nfWlot6h_JM" },
+  { type:"MUSIC", title:"Blank Space — Taylor Swift", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"e-ORhEE9VVg" },
+  { type:"MUSIC", title:"Chandelier — Sia", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"2vjPBrBU-TM" },
+  { type:"MUSIC", title:"Lean On — Major Lazer & DJ Snake ft. MØ", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"YqeW9_5kURI" },
+  { type:"MUSIC", title:"Love Me Like You Do — Ellie Goulding", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"AJtDXIazrMo" },
+  { type:"MUSIC", title:"Can't Stop the Feeling! — Justin Timberlake", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"ru0K8uYEZWw" },
+  { type:"MUSIC", title:"Girls Like You — Maroon 5 ft. Cardi B", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"aJOTlE1K90k" },
+  { type:"MUSIC", title:"Believer — Imagine Dragons", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"7wtfhZwyrcc" },
+  { type:"MUSIC", title:"Thunder — Imagine Dragons", meta:"UK/US • 1B+", desc:"Official MV.", videoId:"fKopy74weus" },
+
+  // ===== BIGBANG (YOU REQUESTED) =====
+  { type:"MUSIC", title:"Let Me Hear Your Voice — BIGBANG", meta:"BIGBANG", desc:"KOEWOKIKASETE.", videoId:"UIwz5Oz8gU4" },
+  { type:"MUSIC", title:"Lies (거짓말) — BIGBANG", meta:"BIGBANG", desc:"BIGBANG - LIES M/V.", videoId:"2Cv3phvP8Ro" },
+];
+
+
+    function ytEmbedUrl(videoId){
+      const params = new URLSearchParams();
+      params.set("rel","0");
+      params.set("modestbranding","1");
+      params.set("playsinline","1");
+      if(autoplay) params.set("autoplay","1");
+      if(loop){
+        params.set("loop","1");
+        params.set("playlist", videoId); // loop single video
+      }
+      return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+    }
+
+    function setActiveTrack(idx){
+      const item = MEDIA[idx];
+      if(!item) return;
+      currentItem = item;
+
+      ytPlayer.src = ytEmbedUrl(item.videoId);
+
+      nowTypeEl.textContent = `TYPE: ${item.type}`;
+      nowTitleEl.textContent = `NOW: ${item.title}`;
+      nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+
+      document.querySelectorAll(".track").forEach(el=>el.classList.remove("active"));
+      const active = document.querySelector(`.track[data-idx="${idx}"]`);
+      if(active) active.classList.add("active");
+    }
+
+    function renderPlaylist(){
+      playlistEl.innerHTML = MEDIA.map((m, idx)=>`
+        <div class="track" data-idx="${idx}">
+          <div class="trackTop">
+            <div class="trackTitle">${m.title}</div>
+            <div class="trackMeta">${m.meta}</div>
+          </div>
+          <p class="trackDesc">${m.desc}</p>
+        </div>
+      `).join("");
+
+      playlistEl.querySelectorAll(".track").forEach(el=>{
+        el.addEventListener("click", ()=>{
+          const idx = Number(el.getAttribute("data-idx"));
+          setActiveTrack(idx);
+          toast("Switched ✅");
+        });
+      });
+    }
+    renderPlaylist();
+
+   // ✅ FIX: chọn Last Christmas nếu có, không thì bài đầu tiên
+const defaultIdx = MEDIA.findIndex(
+  x => (x.title || "").toLowerCase().includes("last christmas")
+);
+setActiveTrack(defaultIdx >= 0 ? defaultIdx : 0);;
+
+    // Controls
+    const apState = document.getElementById("apState");
+    const lpState = document.getElementById("lpState");
+    document.getElementById("btnAutoplay").addEventListener("click", ()=>{
+      autoplay = !autoplay;
+      apState.textContent = autoplay ? "ON" : "OFF";
+      if(currentItem) ytPlayer.src = ytEmbedUrl(currentItem.videoId);
+      nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+      toast("Autoplay " + (autoplay ? "ON" : "OFF"));
+    });
+    document.getElementById("btnLoop").addEventListener("click", ()=>{
+      loop = !loop;
+      lpState.textContent = loop ? "ON" : "OFF";
+      if(currentItem) ytPlayer.src = ytEmbedUrl(currentItem.videoId);
+      nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+      toast("Loop " + (loop ? "ON" : "OFF"));
+    });
+
+    document.getElementById("btnCopyMedia").addEventListener("click", async ()=>{
+      if(!currentItem) return;
+      const url = `https://www.youtube.com/watch?v=${currentItem.videoId}`;
+      try{
+        await navigator.clipboard.writeText(url);
+        toast("Copied video link ✅");
+      }catch(e){
+        toast("Copy failed");
+      }
+    });
+
+    document.getElementById("btnOpenYT").addEventListener("click", ()=>{
+      if(!currentItem) return;
+      window.open(`https://www.youtube.com/watch?v=${currentItem.videoId}`, "_blank", "noopener");
+    });
   </script>
 </body>
 </html>
