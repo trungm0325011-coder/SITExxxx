@@ -1911,6 +1911,15 @@
   { title:"Hãy Trao Cho Anh — Sơn Tùng M-TP", videoId:"knW7-x7Y7RE" },
 
     ];
+    // ✅ FIX: fill missing fields so playlist never breaks
+const MEDIA_FIXED = MEDIA.map(m => ({
+  type: m.type || "MUSIC",
+  title: m.title || "Untitled",
+  meta: m.meta || "VIETNAM • MUSIC",
+  desc: m.desc || "Official video.",
+  videoId: m.videoId
+})).filter(x => x.videoId); // remove any item missing videoId
+
 
     function ytEmbedUrl(videoId){
       const params = new URLSearchParams();
@@ -1940,7 +1949,8 @@
       if(active) active.classList.add("active");
     }
 
-    function renderPlaylist(){
+    function playlistEl.innerHTML = MEDIA_FIXED.map((m, idx)=>`
+
       playlistEl.innerHTML = MEDIA.map((m, idx)=>`
         <div class="track" data-idx="${idx}">
           <div class="trackTop">
@@ -1954,14 +1964,16 @@
       playlistEl.querySelectorAll(".track").forEach(el=>{
         el.addEventListener("click", ()=>{
           const idx = Number(el.getAttribute("data-idx"));
-          setActiveTrack(idx);
+         const item = MEDIA_FIXED[idx];
+;
           toast("Switched ✅");
         });
       });
     }
     renderPlaylist();
 
-    const defaultIdx = MEDIA.findIndex(x => (x.title || "").toLowerCase().includes("last christmas"));
+    const defaultIdx = MEDIA_FIXED.findIndex(x => (x.title || "").toLowerCase().includes("last christmas"));
+
     setActiveTrack(defaultIdx >= 0 ? defaultIdx : 0);
 
     const apState = document.getElementById("apState");
