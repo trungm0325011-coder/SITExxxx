@@ -1630,7 +1630,7 @@
      * 4) SHARE / COPY
      ********************/
     document.getElementById("btnShare").addEventListener("click", async ()=>{
-      const url = location.href.split("#")[0];
+     const url = getCleanUrl();
       try{
         await navigator.clipboard.writeText(url);
         toast("Copied URL ✅");
@@ -2299,14 +2299,22 @@ btnMediaReset.addEventListener("click", ()=>{
 VERSION:3.0
 FN:Tran Quoc Trung
 EMAIL:${CONTACT.email}
-URL:${location.href.split("#")[0]}
+URL:${getCleanUrl()}
 X-SOCIALPROFILE;type=facebook:${CONTACT.facebook}
 NOTE:Veterinary • AI • App Builder
 END:VCARD`;
       makeMainQR(vcf);
     });
 
-    const siteUrl = location.href.split("#")[0];
+   const siteUrl = getCleanUrl();
+    (function(){
+  const clean = getCleanUrl();
+  if (window.location.href !== clean) {
+    window.history.replaceState({}, document.title, clean);
+  }
+})();
+
+
     document.getElementById("qrSiteText").textContent = siteUrl;
 
     makeQR(document.getElementById("qrSiteBox"), siteUrl);
@@ -2376,5 +2384,80 @@ END:VCARD`;
     }, {threshold: 0.25});
     barEls.forEach(b=>io.observe(b));
   </script>
+  <script>
+  (function () {
+    const cleanUrl =
+      window.location.origin + window.location.pathname;
+    if (window.location.href !== cleanUrl) {
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+  })();
+    <script>
+  const qrBox = document.getElementById("qrBox");
+  const qrCaption = document.getElementById("qrCaption");
+
+  function getCleanUrl(){
+    return window.location.origin + window.location.pathname;
+  }
+
+  (function(){
+    const clean = getCleanUrl();
+    if (window.location.href !== clean) {
+      window.history.replaceState({}, document.title, clean);
+    }
+  })();
+
+  function makeQR(targetEl, text){
+    targetEl.innerHTML = "";
+    new QRCode(targetEl, {
+      text,
+      width: 220,
+      height: 220,
+      colorDark : "#111111",
+      colorLight : "#ffffff",
+      correctLevel : QRCode.CorrectLevel.H
+    });
+  }
+
+  function makeMainQR(text){
+    makeQR(qrBox, text);
+    qrCaption.textContent = "QR: " + text;
+    toast("QR created ✅");
+  }
+
+  document.getElementById("btnQR").addEventListener("click", ()=>{
+    const text = (document.getElementById("qrText").value || "").trim();
+    if(!text){ toast("Nhập nội dung để tạo QR"); return; }
+    makeMainQR(text);
+  });
+
+  document.getElementById("btnQRUrl").addEventListener("click", ()=>{
+    const url = getCleanUrl();
+    makeMainQR(url);
+  });
+
+  document.getElementById("btnQRVCF").addEventListener("click", ()=>{
+    const vcf =
+`BEGIN:VCARD
+VERSION:3.0
+FN:Tran Quoc Trung
+EMAIL:${CONTACT.email}
+URL:${getCleanUrl()}
+X-SOCIALPROFILE;type=facebook:${CONTACT.facebook}
+NOTE:Veterinary • AI • App Builder
+END:VCARD`;
+    makeMainQR(vcf);
+  });
+
+  const siteUrl = getCleanUrl();
+  document.getElementById("qrSiteText").textContent = siteUrl;
+
+  makeQR(document.getElementById("qrSiteBox"), siteUrl);
+  makeQR(document.getElementById("qrFbBox"), CONTACT.facebook);
+  makeQR(document.getElementById("qrZaloBox"), CONTACT.zalo);
+</script>
+</body>
+</html>
+</script>
 </body>
 </html>
