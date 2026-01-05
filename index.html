@@ -2257,6 +2257,141 @@ btnMediaReset.addEventListener("click", ()=>{
   renderPlaylist();
   toast("Reset ✅");
 });
+    /********************
+ * 9) QR GENERATOR (ONE BLOCK ONLY)
+ ********************/
+const qrBox = document.getElementById("qrBox");
+const qrCaption = document.getElementById("qrCaption");
+
+function getCleanUrl(){
+  return window.location.origin + window.location.pathname;
+}
+
+// Làm sạch URL (bỏ ?fbclid=..., ?zarsrc=..., #...)
+(function(){
+  const clean = getCleanUrl();
+  if (window.location.href !== clean) {
+    window.history.replaceState({}, document.title, clean);
+  }
+})();
+
+function makeQR(targetEl, text){
+  if(!targetEl) return;
+  targetEl.innerHTML = "";
+  new QRCode(targetEl, {
+    text: text,
+    width: 220,
+    height: 220,
+    colorDark: "#111111",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+}
+
+function makeMainQR(text){
+  makeQR(qrBox, text);
+  if(qrCaption) qrCaption.textContent = "QR: " + text;
+  toast("QR created ✅");
+}
+
+// Tạo QR từ input
+document.getElementById("btnQR")?.addEventListener("click", ()=>{
+  const text = (document.getElementById("qrText")?.value || "").trim();
+  if(!text){ toast("Nhập nội dung để tạo QR"); return; }
+  makeMainQR(text);
+});
+
+// Tạo QR cho link website (URL sạch)
+document.getElementById("btnQRUrl")?.addEventListener("click", ()=>{
+  makeMainQR(getCleanUrl());
+});
+
+// Tạo QR danh bạ VCF
+document.getElementById("btnQRVCF")?.addEventListener("click", ()=>{
+  const vcf =
+`BEGIN:VCARD
+VERSION:3.0
+FN:Tran Quoc Trung
+EMAIL:${CONTACT.email}
+URL:${getCleanUrl()}
+X-SOCIALPROFILE;type=facebook:${CONTACT.facebook}
+NOTE:Veterinary • AI • App Builder
+END:VCARD`;
+  makeMainQR(vcf);
+});
+
+// QR cố định: Website / Facebook / Zalo
+const siteUrl = getCleanUrl();
+const qrSiteTextEl = document.getElementById("qrSiteText");
+if(qrSiteTextEl) qrSiteTextEl.textContent = siteUrl;
+
+makeQR(document.getElementById("qrSiteBox"), siteUrl);
+makeQR(document.getElementById("qrFbBox"), CONTACT.facebook);
+makeQR(document.getElementById("qrZaloBox"), CONTACT.zalo);
+
+/********************
+ * 10) PRINT CV
+ ********************/
+document.getElementById("btnPrint")?.addEventListener("click", ()=>{
+  window.open("CV_Trung.pdf", "_blank", "noopener");
+  toast("Opened CV ✅");
+});
+
+/********************
+ * 11) SEND MAIL (mailto)
+ ********************/
+document.getElementById("btnMail")?.addEventListener("click", ()=>{
+  const name = (document.getElementById("name")?.value || "").trim();
+  const subject = (document.getElementById("subject")?.value || "").trim();
+  const message = (document.getElementById("message")?.value || "").trim();
+
+  const sub = encodeURIComponent(subject ? `[Portfolio] ${subject}` : "[Portfolio] Message");
+  const body = encodeURIComponent(
+    `Name: ${name}\n\nMessage:\n${message}\n\n---\nSent from portfolio page`
+  );
+  window.location.href = `mailto:${CONTACT.email}?subject=${sub}&body=${body}`;
+});
+
+/********************
+ * 12) NAV SPY + BACK TO TOP
+ ********************/
+const topBtn = document.getElementById("topBtn");
+topBtn?.addEventListener("click", ()=> window.scrollTo({top:0, behavior:"smooth"}));
+
+const links = Array.from(document.querySelectorAll(".navLinks a[data-spy]"));
+const sections = links.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+
+function onScroll(){
+  const y = window.scrollY || document.documentElement.scrollTop;
+  if(topBtn) topBtn.classList.toggle("show", y > 600);
+
+  let idx = 0;
+  for(let i=0;i<sections.length;i++){
+    const s = sections[i];
+    const top = s.offsetTop - 120;
+    if(y >= top) idx = i;
+  }
+  links.forEach(a=>a.classList.remove("active"));
+  if(links[idx]) links[idx].classList.add("active");
+}
+window.addEventListener("scroll", onScroll, {passive:true});
+onScroll();
+
+/********************
+ * 13) SKILL BARS animate when visible
+ ********************/
+const barEls = document.querySelectorAll(".bar");
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const pct = e.target.getAttribute("data-pct");
+      const fill = e.target.querySelector(".fill");
+      if(fill) fill.style.width = pct + "%";
+    }
+  });
+}, {threshold: 0.25});
+barEls.forEach(b=>io.observe(b));
+
    <script>
 
 /********************
