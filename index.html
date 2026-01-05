@@ -2257,220 +2257,76 @@ btnMediaReset.addEventListener("click", ()=>{
   renderPlaylist();
   toast("Reset ✅");
 });
-
    <script>
+
 /********************
- * ✅ QR FULL MODULE (NEW)
- * - Website QR (current URL)
- * - Facebook / Zalo QR (from CONTACT)
- * - Custom QR generator
- * - vCard QR
- * - Copy + Download PNG
+ * 9) QR GENERATOR (CLEAN - NO DUPLICATE)
  ********************/
+const qrBox = document.getElementById("qrBox");
+const qrCaption = document.getElementById("qrCaption");
 
-// Fallback toast if not exists
-function _toast(msg){
-  try{
-    if(typeof toast === "function") toast(msg);
-    else alert(msg);
-  }catch(e){ alert(msg); }
-}
-
-// Clean URL (remove hash)
+// URL sạch: không query, không hash
 function getCleanUrl(){
-  try{
-    const u = new URL(window.location.href);
-    u.hash = "";
-    return u.toString();
-  }catch(e){
-    return window.location.href.split("#")[0];
-  }
+  return window.location.origin + window.location.pathname;
 }
 
-// Render QR helper
-function renderQR(targetEl, text, size=220){
+// nếu URL đang bị dính ?fbclid=... thì tự làm sạch trên thanh địa chỉ
+(function(){
+  const clean = getCleanUrl();
+  if (window.location.href !== clean) {
+    window.history.replaceState({}, document.title, clean);
+  }
+})();
+
+function makeQR(targetEl, text){
   if(!targetEl) return;
   targetEl.innerHTML = "";
-  if(!text || !text.trim()){
-    targetEl.innerHTML = "<div class='muted2' style='font-weight:800'>No data</div>";
-    return;
-  }
   new QRCode(targetEl, {
-    text: text.trim(),
-    width: size,
-    height: size,
+    text,
+    width: 220,
+    height: 220,
     colorDark: "#111111",
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.H
   });
 }
 
-// Extract PNG dataURL from QR box (works with canvas or img)
-function getQrDataUrl(boxEl){
-  if(!boxEl) return null;
-  const canvas = boxEl.querySelector("canvas");
-  if(canvas) return canvas.toDataURL("image/png");
-  const img = boxEl.querySelector("img");
-  if(img && img.src) return img.src;
-  return null;
+function makeMainQR(text){
+  makeQR(qrBox, text);
+  if(qrCaption) qrCaption.textContent = "QR: " + text;
+  toast("QR created ✅");
 }
 
-function downloadQrPng(boxEl, filename){
-  const url = getQrDataUrl(boxEl);
-  if(!url){ _toast("Chưa có QR để tải"); return; }
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename || "qr.png";
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-}
-
-// Build vCard string
-function buildVCard(){
-  // Anh có thể sửa thêm phone/name nếu muốn
-  const name = "Tran Quoc Trung";
-  const email = (CONTACT && CONTACT.email) ? CONTACT.email : "";
-  const fb = (CONTACT && CONTACT.facebook) ? CONTACT.facebook : "";
-  const zalo = (CONTACT && CONTACT.zalo) ? CONTACT.zalo : "";
-  const url = getCleanUrl();
-
-  // vCard 3.0 (simple & compatible)
-  return [
-    "BEGIN:VCARD",
-    "VERSION:3.0",
-    `FN:${name}`,
-    email ? `EMAIL;TYPE=INTERNET:${email}` : "",
-    fb ? `URL:${fb}` : "",
-    zalo ? `NOTE:Zalo ${zalo}` : "",
-    `URL:${url}`,
-    "END:VCARD"
-  ].filter(Boolean).join("\n");
-}
-
-// Elements
-const qrSiteBox = document.getElementById("qrSiteBox");
-const qrSiteText = document.getElementById("qrSiteText");
-
-const qrFbBox = document.getElementById("qrFbBox");
-const qrZaloBox = document.getElementById("qrZaloBox");
-
-const qrText = document.getElementById("qrText");
-const qrBox = document.getElementById("qrBox");
-const qrCaption = document.getElementById("qrCaption");
-
-// Buttons
-const btnQR = document.getElementById("btnQR");
-const btnQRUrl = document.getElementById("btnQRUrl");
-const btnQRVCF = document.getElementById("btnQRVCF");
-const btnClearQR = document.getElementById("btnClearQR");
-
-const btnCopySiteUrl = document.getElementById("btnCopySiteUrl");
-const btnCopyFb = document.getElementById("btnCopyFb");
-const btnCopyZalo = document.getElementById("btnCopyZalo");
-const btnCopyQR = document.getElementById("btnCopyQR");
-
-const btnDlSite = document.getElementById("btnDlSite");
-const btnDlFb = document.getElementById("btnDlFb");
-const btnDlZalo = document.getElementById("btnDlZalo");
-const btnDlQR = document.getElementById("btnDlQR");
-
-// Init default QRs
-function initQrDefaults(){
-  const siteUrl = getCleanUrl();
-  renderQR(qrSiteBox, siteUrl, 220);
-  qrSiteText.textContent = siteUrl;
-
-  if(CONTACT && CONTACT.facebook){
-    renderQR(qrFbBox, CONTACT.facebook, 220);
-  }else{
-    renderQR(qrFbBox, "https://facebook.com", 220);
-  }
-
-  if(CONTACT && CONTACT.zalo){
-    renderQR(qrZaloBox, CONTACT.zalo, 220);
-  }else{
-    renderQR(qrZaloBox, "https://zalo.me", 220);
-  }
-}
-initQrDefaults();
-
-// Actions
-btnQRUrl.addEventListener("click", ()=>{
-  const siteUrl = getCleanUrl();
-  renderQR(qrSiteBox, siteUrl, 220);
-  qrSiteText.textContent = siteUrl;
-  _toast("Đã tạo QR Website ✅");
+document.getElementById("btnQR")?.addEventListener("click", ()=>{
+  const text = (document.getElementById("qrText")?.value || "").trim();
+  if(!text){ toast("Nhập nội dung để tạo QR"); return; }
+  makeMainQR(text);
 });
 
-btnCopySiteUrl.addEventListener("click", async ()=>{
-  const siteUrl = getCleanUrl();
-  try{
-    await navigator.clipboard.writeText(siteUrl);
-    _toast("Copied URL ✅");
-  }catch(e){
-    _toast("Copy failed");
-  }
+document.getElementById("btnQRUrl")?.addEventListener("click", ()=>{
+  makeMainQR(getCleanUrl());
 });
 
-btnCopyFb.addEventListener("click", async ()=>{
-  const fb = (CONTACT && CONTACT.facebook) ? CONTACT.facebook : "";
-  if(!fb){ _toast("Chưa có Facebook trong CONTACT"); return; }
-  try{ await navigator.clipboard.writeText(fb); _toast("Copied ✅"); }catch(e){ _toast("Copy failed"); }
+document.getElementById("btnQRVCF")?.addEventListener("click", ()=>{
+  const vcf =
+`BEGIN:VCARD
+VERSION:3.0
+FN:Tran Quoc Trung
+EMAIL:${CONTACT.email}
+URL:${getCleanUrl()}
+X-SOCIALPROFILE;type=facebook:${CONTACT.facebook}
+NOTE:Veterinary • AI • App Builder
+END:VCARD`;
+  makeMainQR(vcf);
 });
 
-btnCopyZalo.addEventListener("click", async ()=>{
-  const zalo = (CONTACT && CONTACT.zalo) ? CONTACT.zalo : "";
-  if(!zalo){ _toast("Chưa có Zalo trong CONTACT"); return; }
-  try{ await navigator.clipboard.writeText(zalo); _toast("Copied ✅"); }catch(e){ _toast("Copy failed"); }
-});
+// QR tĩnh ở khu vực hiển thị
+const siteUrl = getCleanUrl();
+document.getElementById("qrSiteText").textContent = siteUrl;
 
-btnQR.addEventListener("click", ()=>{
-  const text = (qrText.value || "").trim();
-  if(!text){
-    _toast("Anh dán nội dung trước nhé");
-    return;
-  }
-  renderQR(qrBox, text, 240);
-  qrCaption.textContent = "QR: " + (text.length > 120 ? text.slice(0,120) + "..." : text);
-  _toast("Đã tạo QR ✅");
-});
-
-btnQRVCF.addEventListener("click", ()=>{
-  const vcf = buildVCard();
-  renderQR(qrBox, vcf, 240);
-  qrCaption.textContent = "QR vCard (danh thiếp)";
-  _toast("Đã tạo QR vCard ✅");
-});
-
-btnClearQR.addEventListener("click", ()=>{
-  qrBox.innerHTML = "";
-  qrCaption.textContent = "(Chưa tạo QR)";
-  qrText.value = "";
-  _toast("Đã xóa ✅");
-});
-
-btnCopyQR.addEventListener("click", async ()=>{
-  const text = (qrText.value || "").trim();
-  if(!text){
-    _toast("Ô input đang trống (nếu là vCard thì bấm Copy vCard bằng cách dán lại)");
-    return;
-  }
-  try{
-    await navigator.clipboard.writeText(text);
-    _toast("Copied ✅");
-  }catch(e){
-    _toast("Copy failed");
-  }
-});
-
-// Download PNG
-btnDlSite.addEventListener("click", ()=> downloadQrPng(qrSiteBox, "qr_website.png"));
-btnDlFb.addEventListener("click", ()=> downloadQrPng(qrFbBox, "qr_facebook.png"));
-btnDlZalo.addEventListener("click", ()=> downloadQrPng(qrZaloBox, "qr_zalo.png"));
-btnDlQR.addEventListener("click", ()=> downloadQrPng(qrBox, "qr_custom.png"));
-
-</script>
+makeQR(document.getElementById("qrSiteBox"), siteUrl);
+makeQR(document.getElementById("qrFbBox"), CONTACT.facebook);
+makeQR(document.getElementById("qrZaloBox"), CONTACT.zalo);
 
 
     /********************
